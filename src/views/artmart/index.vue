@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import Search from '@/component/artmart/Search.vue';
   import Swiper from '@/component/artmart/Swiper.vue';
   import Powers from '@/component/artmart/Powers.vue';
   import TodayArtwork from '@/component/artmart/TodayArtwork.vue';
-  import NavBar from '@/component/artmart/NavBar.vue';
   import ArtistRecom from '@/component/artmart/ArtistRecom.vue';
+  import MainLayout from '@/component/artmart/MainLayout.vue';
 
   defineComponent({
     name: 'artmartView',
@@ -32,30 +32,25 @@
 </script>
 
 <template>
-  <div class="home">
+  <MainLayout>
     <Search />
     <Swiper :imageList="imageList" class="swiper-wrapper" />
     <Powers :powerList="powerList" class="powers-wrapper" />
     <TodayArtwork class="today-artwork-wrapper" />
     <ArtistRecom />
-    <NavBar />
-  </div>
+  </MainLayout>
 </template>
 
 <style lang="scss" scoped>
-  .home {
-    background-color: #fff;
+  .swiper-wrapper {
+    padding: 8px 32px;
+  }
 
-    > .swiper-wrapper {
-      padding: 8px 32px;
-    }
+  .powers-wrapper {
+    padding: 32px 32px 0 32px;
+  }
 
-    > .powers-wrapper {
-      padding: 32px 32px 0 32px;
-    }
-
-    > .today-artwork-wrapper {
-      padding: 92px 32px 32px 32px;
-    }
+  .today-artwork-wrapper {
+    padding: 92px 32px 32px 32px;
   }
 </style>

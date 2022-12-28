@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { defineComponent } from 'vue';
+  import Icon from '@/component/Icon.vue';
 
   defineComponent({
     name: 'NavBar',
@@ -7,16 +8,46 @@
 </script>
 
 <template>
-  <van-tabbar route class="van-tabbar">
-    <van-tabbar-item replace to="/artmart" icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item replace to="/search" icon="search">分类</van-tabbar-item>
-    <van-tabbar-item replace to="/friends" icon="like-o">心愿单</van-tabbar-item>
-    <van-tabbar-item replace to="/setting" icon="user-circle-o">我的</van-tabbar-item>
-  </van-tabbar>
+  <nav class="nav">
+    <router-link to="/artmart">
+      <Icon name="artmart-home" />
+      <span>首页</span>
+    </router-link>
+    <router-link to="/category">
+      <Icon name="artmart-category" />
+      <span>分类</span>
+    </router-link>
+    <router-link to="/wishlist">
+      <Icon name="artmart-like" />
+      <span>心愿单</span>
+    </router-link>
+    <router-link to="/mine">
+      <Icon name="artmart-my" />
+      <span>我的</span>
+    </router-link>
+  </nav>
 </template>
 
 <style lang="scss" scoped>
-  :deep(.van-tabbar-item--active) {
-    color: #4243e8;
+  .nav {
+    display: flex;
+    > a {
+      width: 25%;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px 0;
+      color: #707070;
+      .icon {
+        width: 64px;
+        height: 64px;
+      }
+      &.router-link-exact-active {
+        color: #4243e8;
+      }
+    }
   }
 </style>
