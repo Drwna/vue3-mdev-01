@@ -16,12 +16,25 @@
 
 <template>
   <div class="swiper">
-    <van-swipe>
+    <van-swipe autoplay="3000">
       <van-swipe-item v-for="image in imageList" :key="image">
-        <img :src="baseImgURL + image.img" :alt="image.name" />
+        <img class="img" :src="baseImgURL + image.img" :alt="image.name" />
       </van-swipe-item>
     </van-swipe>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .swiper {
+    :deep(.van-swipe-item) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+</style>

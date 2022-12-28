@@ -21,7 +21,7 @@
       <Icon name="artmart-like" />
       <span>心愿单</span>
     </router-link>
-    <router-link to="/mine">
+    <router-link to="/my">
       <Icon name="artmart-my" />
       <span>我的</span>
     </router-link>

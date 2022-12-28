@@ -33,7 +33,15 @@
       h1 {
         font-size: 60px;
       }
+      @media screen and (min-width: 768px) {
+        padding: 8px 0 8px 32px;
+        h1 {
+          font-size: 38px;
+          color: red;
+        }
+      }
     }
+
     > .main {
       flex-grow: 1;
       overflow: auto;
