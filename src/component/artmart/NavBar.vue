@@ -33,17 +33,17 @@
     display: flex;
     > a {
       width: 25%;
-      font-size: 20px;
+      font-size: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 12px 0;
+      gap: 4px;
+      padding: 8px 0;
       color: #707070;
       .icon {
-        width: 64px;
-        height: 64px;
+        width: 28px;
+        height: 28px;
       }
       &.router-link-exact-active {
         color: #4243e8;

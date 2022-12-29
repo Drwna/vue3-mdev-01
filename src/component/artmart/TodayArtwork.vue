@@ -49,14 +49,15 @@
   .today-artwork {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 20px;
 
     > h2 {
-      font-size: 46px;
+      font-size: 32px;
     }
 
     > .image {
-      width: 100%;
+      max-width: 100%;
+      max-height: 400px;
       object-fit: contain;
     }
 
@@ -74,18 +75,18 @@
         }
 
         .avatar {
-          width: 62px;
+          width: 32px;
           object-fit: contain;
         }
 
         .author {
-          font-size: 32px;
-          line-height: 32px;
+          font-size: 16px;
+          line-height: 16px;
           color: #000;
 
           span {
-            font-size: 26px;
-            line-height: 18px;
+            font-size: 14px;
+            line-height: 14px;
             color: #999;
           }
         }
@@ -93,19 +94,19 @@
 
       .row_2 {
         .name {
-          font-size: 32px;
-          line-height: 32px;
+          font-size: 16px;
+          line-height: 16px;
           color: #000;
         }
 
         .amount {
-          font-size: 24px;
-          line-height: 24px;
+          font-size: 14px;
+          line-height: 14px;
           color: #000;
 
           span {
-            font-size: 32px;
-            line-height: 32px;
+            font-size: 16px;
+            line-height: 16px;
             color: #000;
           }
         }
@@ -120,20 +121,20 @@
         }
 
         .wishlist {
-          font-size: 24px;
-          line-height: 24px;
+          font-size: 16px;
+          line-height: 16px;
           color: #999;
         }
 
         .view {
-          font-size: 24px;
-          line-height: 24px;
+          font-size: 14px;
+          line-height: 14px;
           color: #999;
         }
 
         .location {
-          font-size: 24px;
-          line-height: 24px;
+          font-size: 14px;
+          line-height: 14px;
           color: #999;
         }
       }

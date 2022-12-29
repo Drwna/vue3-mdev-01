@@ -1,5 +1,11 @@
 const path = require('path');
 
+// 获取环境变量
+if (process.env.NODE_ENV === 'development') {
+  console.log(process.env.NODE_ENV);
+  return;
+}
+
 const judgeComponent = (file) => {
   const ignore = ['vant'];
   return ignore.some((item) => path.join(file).includes(path.join('node_modules', item)));
@@ -7,7 +13,9 @@ const judgeComponent = (file) => {
 
 module.exports = {
   plugins: {
-    autoprefixer: { overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8'] },
+    autoprefixer: {
+      overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8'],
+    },
     'cnjm-postcss-px-to-viewport': {
       unitToConvert: 'px', // 要转化的单位
       viewportWidth: 750, // UI设计稿的宽度

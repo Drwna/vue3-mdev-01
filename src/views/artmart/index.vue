@@ -47,10 +47,12 @@
   }
 
   .powers-wrapper {
-    padding: 32px 32px 0 32px;
+    //padding: 32px 32px 0 32px;
+    padding: 20px;
   }
 
   .today-artwork-wrapper {
-    padding: 92px 32px 32px 32px;
+    //padding: 92px 32px 32px 32px;
+    padding: 30px 20px;
   }
 </style>

@@ -27,14 +27,16 @@
 
 <style lang="scss" scoped>
   .swiper {
+    width: 100%;
+    max-height: 400px;
     :deep(.van-swipe-item) {
       display: flex;
       justify-content: center;
       align-items: center;
       .img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
       }
     }
   }

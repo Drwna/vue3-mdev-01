@@ -1,7 +1,6 @@
 <script lang="ts" setup>
   import { defineComponent, ref } from 'vue';
 
-  // 顶部搜索组件
   defineComponent({
     name: 'Search',
   });
@@ -14,9 +13,14 @@
 </script>
 
 <template>
-  <div class="search-wrapper" @click="onClick">
+  <div class="search" @click="onClick">
     <van-search v-model="value" disabled placeholder="搜索艺术品 / 艺术家" />
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.search {
+
+}
+
+</style>

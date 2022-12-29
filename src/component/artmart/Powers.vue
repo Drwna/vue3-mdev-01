@@ -27,7 +27,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-row-gap: 64px;
+    grid-row-gap: 32px;
 
     > .power {
       display: flex;
@@ -37,11 +37,11 @@
       gap: 32px;
 
       img {
-        width: 52px;
+        width: 28px;
       }
 
       .text {
-        font-size: 20px;
+        font-size: 14px;
       }
     }
   }

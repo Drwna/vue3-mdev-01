@@ -1,0 +1,64 @@
+// 移动端页面设计稿宽度
+$designWidth: 750px;
+// 移动端页面设计稿dpr基准值
+$designDpr: 2;
+// 将移动端页面分为10块
+$blocks: 10;
+// 缩放所支持的设备最小宽度
+$minDeviceWidth: 320px;
+// 缩放所支持的设备最大宽度
+$maxDeviceWidth: 750px;
+
+@mixin root-font-size() {
+  font-size: calc(100vw / $blocks);
+
+  body {
+    @include container-min-width();
+  }
+
+  /* 最小宽度定义 */
+  @media screen and (max-width: $minDeviceWidth) {
+    font-size: calc($minDeviceWidth / $blocks);
+  }
+
+  /* 最大宽度定义 */
+  &[data-content-max] {
+    body[data-content-max] {
+      @include container-max-width();
+    }
+
+    @media screen and (min-width: $maxDeviceWidth) {
+      font-size: calc($minDeviceWidth / $blocks);
+    }
+  }
+}
+
+// 原始px
+@function rawPx($px) {
+  @return $px;
+}
+
+@function pxToRem($px){//$px为需要转换的字号
+  @return $px / $designWidth / $blocks * 1rem;
+}
+
+// 单位px转化为rem
+@function px2rem($px) {
+  @return #{$px / $designWidth * $blocks}rem;
+}
+
+// 设置容器最大宽度
+@mixin container-max-width() {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: $maxDeviceWidth;
+}
+
+// 设置容器最小宽度
+@mixin container-min-width() {
+  margin-right: auto;
+  margin-left: auto;
+  min-width: $minDeviceWidth;
+}
+
+
