@@ -4,13 +4,14 @@
   defineComponent({
     name: 'Swiper',
   });
-  defineProps({
+
+  defineProps<{
     imageList: {
-      type: Array,
-      required: true,
-      default: () => [],
-    },
-  });
+      img: string;
+      name: string;
+    }[];
+  }>();
+
   const baseImgURL = 'src/assets/images/artmart/';
 </script>
 

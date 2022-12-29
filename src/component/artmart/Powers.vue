@@ -5,12 +5,12 @@
     name: 'Powers',
   });
 
-  defineProps({
+  defineProps<{
     powerList: {
-      type: Array,
-      default: () => [],
-    },
-  });
+      icon: string;
+      name: string;
+    }[];
+  }>();
 </script>
 
 <template>
