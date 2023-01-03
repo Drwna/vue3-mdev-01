@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import router from '@/router';
 
-const goHome = () => router.replace('/');
+const goHome = () => router.push('/');
 
 </script>
 

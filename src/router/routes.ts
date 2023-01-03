@@ -32,6 +32,21 @@ const routes = [
     component: () => import('@/views/my/index.vue'),
   },
   {
+    path: '/demo',
+    name: 'demo',
+    component: ()=> import('@/views/demo/index.vue'),
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/register/Index.vue'),
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/Index.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/error.vue'),
