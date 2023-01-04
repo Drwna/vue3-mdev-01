@@ -7,5 +7,7 @@
 
 <style>
 #app {
+  min-height: 100vh;
+  min-width: 100vw;
 }
 </style>
