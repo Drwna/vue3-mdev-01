@@ -42,14 +42,14 @@ const routes = [
     component: () => import('@/views/register/Index.vue'),
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/login/Index.vue'),
-  },
-  {
     path: '/verify',
     name: 'verify',
-    component: () => import('@/views/verify/Index.vue'),
+    component: () => import('@/views/verifyPage/Index.vue'),
+  },
+  {
+    path: '/avatar',
+    name: 'avatar',
+    component: () => import('@/views/avatar/Index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

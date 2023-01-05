@@ -38,7 +38,7 @@ axios.interceptors.response.use(
 //封装post/get请求
 export default {
   post(url: string, data: Record<any, any>) {
-    return new Promise((resolve, reject) => {
+    return new Promise<Record<string, string>>((resolve, reject) => {
       axios({
         method: "post",
         url,

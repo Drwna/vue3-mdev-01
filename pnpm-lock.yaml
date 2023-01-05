@@ -17,6 +17,8 @@ specifiers:
   mockjs: ^1.1.0
   npm-run-all: ^4.1.5
   pinia: ^2.0.28
+  postcss: ^8.4.20
+  postcss-pxtorem: ^6.0.0
   prettier: ^2.7.1
   sass: ^1.57.1
   typescript: ~4.7.4
@@ -26,15 +28,19 @@ specifiers:
   vite-plugin-mock: ^2.9.6
   vite-plugin-svg-icons: ^2.0.1
   vue: ^3.2.45
+  vue-picture-cropper: ^0.6.1
   vue-router: ^4.1.6
   vue-tsc: ^1.0.12
+  vue3-slide-verify: ^1.1.4
 
 dependencies:
   axios: 1.2.1
   pinia: 2.0.28_e7lp6ggkpgyi5vqd44m2kxvk6i
   vant: 4.0.3_vue@3.2.45
   vue: 3.2.45
+  vue-picture-cropper: 0.6.1_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
+  vue3-slide-verify: 1.1.4
 
 devDependencies:
   '@rushstack/eslint-patch': 1.2.0
@@ -45,12 +51,14 @@ devDependencies:
   '@vue/eslint-config-typescript': 11.0.2_adxhicpeghzj7xflzvuh26phpu
   '@vue/tsconfig': 0.1.3_@types+node@18.11.17
   amfe-flexible: 2.2.1
-  autoprefixer: 10.4.13
-  cnjm-postcss-px-to-viewport: 1.0.0
+  autoprefixer: 10.4.13_postcss@8.4.20
+  cnjm-postcss-px-to-viewport: 1.0.0_postcss@8.4.20
   eslint: 8.30.0
   eslint-plugin-vue: 9.8.0_eslint@8.30.0
   mockjs: 1.1.0
   npm-run-all: 4.1.5
+  postcss: 8.4.20
+  postcss-pxtorem: 6.0.0_postcss@8.4.20
   prettier: 2.8.1
   sass: 1.57.1
   typescript: 4.7.4
@@ -353,6 +361,12 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+
+  /@bassist/utils/0.4.0:
+    resolution: {integrity: sha512-aoFTl0jUjm8/tDZodP41wnEkvB+C5O9NFCuYN/ztL6jSUSsuBkXq90/1ifBm1XhV/zySHgLYlU1+tgo3XtQ+nA==}
+    dependencies:
+      '@withtypes/mime': 0.1.2
+    dev: false
 
   /@esbuild/android-arm/0.16.10:
     resolution: {integrity: sha512-RmJjQTRrO6VwUWDrzTBLmV4OJZTarYsiepLGlF2rYTVB701hSorPywPGvP6d8HCuuRibyXa5JX4s3jN2kHEtjQ==}
@@ -1078,6 +1092,12 @@ packages:
       '@types/node': 18.11.17
     dev: true
 
+  /@withtypes/mime/0.1.2:
+    resolution: {integrity: sha512-PB9BfZGzwblUONJY0LiOwsHCA6uV3DIPj/w9ReekdHxPOl0VdUFgI5s4avKycuuq9Gf5Nz2ZPA2O36GAUzlMPA==}
+    dependencies:
+      mime: 3.0.0
+    dev: false
+
   /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1186,7 +1206,7 @@ packages:
     hasBin: true
     dev: true
 
-  /autoprefixer/10.4.13:
+  /autoprefixer/10.4.13_postcss@8.4.20:
     resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -1198,6 +1218,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
+      postcss: 8.4.20
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -1393,12 +1414,13 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-  /cnjm-postcss-px-to-viewport/1.0.0:
+  /cnjm-postcss-px-to-viewport/1.0.0_postcss@8.4.20:
     resolution: {integrity: sha512-vokFS5qvl7JG/W79JYGZgA19LiVvDzQ5aSIQvnZiZAK2lumP+MP8WCs2AU/fK1aSIBpVmqgRpU4m27RBJ2F7rw==}
     peerDependencies:
       postcss: ^8.4.14
     dependencies:
       object-assign: 4.1.1
+      postcss: 8.4.20
     dev: true
 
   /collection-visit/1.0.0:
@@ -1483,6 +1505,10 @@ packages:
       object-assign: 4.1.1
       vary: 1.1.2
     dev: true
+
+  /cropperjs/1.5.13:
+    resolution: {integrity: sha512-by7jKAo73y5/Do0K6sxdTKHgndY0NMjG2bEdgeJxycbcmHuCiMXqw8sxy5C5Y5WTOTcDGmbT7Sr5CgKOXR06OA==}
+    dev: false
 
   /cross-spawn/6.0.5:
     resolution: {integrity: sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==}
@@ -2895,6 +2921,12 @@ packages:
       mime-db: 1.52.0
     dev: false
 
+  /mime/3.0.0:
+    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dev: false
+
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -3223,6 +3255,14 @@ packages:
       postcss: '>4 <9'
     dependencies:
       postcss: 5.2.18
+    dev: true
+
+  /postcss-pxtorem/6.0.0_postcss@8.4.20:
+    resolution: {integrity: sha512-ZRXrD7MLLjLk2RNGV6UA4f5Y7gy+a/j1EqjAfp9NdcNYVjUMvg5HTYduTjSkKBkRkfqbg/iKrjMO70V4g1LZeg==}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.20
     dev: true
 
   /postcss-selector-parser/6.0.11:
@@ -4088,6 +4128,16 @@ packages:
       - supports-color
     dev: true
 
+  /vue-picture-cropper/0.6.1_vue@3.2.45:
+    resolution: {integrity: sha512-mz8fWHU/ZwZU7PrurlWBZiwlXejGSeUsnevnpOf47Ggg4uRyvAKRtAm/wo/Hu70FKx3S4AyR6Yh9N+8Q2WJmww==}
+    peerDependencies:
+      vue: ^3.2.13
+    dependencies:
+      '@bassist/utils': 0.4.0
+      cropperjs: 1.5.13
+      vue: 3.2.45
+    dev: false
+
   /vue-router/4.1.6_vue@3.2.45:
     resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
     peerDependencies:
@@ -4123,6 +4173,12 @@ packages:
       '@vue/runtime-dom': 3.2.45
       '@vue/server-renderer': 3.2.45_vue@3.2.45
       '@vue/shared': 3.2.45
+
+  /vue3-slide-verify/1.1.4:
+    resolution: {integrity: sha512-er2d9TSPsF5CcmoxBfP6eSkc4IHROwXu6Ytghkwf52apXpXy2ZtW3tOgHnmFWb3GHESKxZ9bsFXqSX+fJ6hjrg==}
+    dependencies:
+      vue: 3.2.45
+    dev: false
 
   /webpack-sources/3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
