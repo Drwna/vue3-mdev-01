@@ -3,11 +3,20 @@
   import Verify from '@/component/verify.vue';
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
-  import { formData, ruleList } from '@/views/verifyPage/Index';
   import { checkAndSendShortMsg, registerByPhone } from '@/api/user';
+  import { validator } from '@/utils/verify';
 
   defineComponent({
-    name: 'Index',
+    name: 'VerifyPage',
+  });
+
+  const formData = reactive({
+    mobilePhoneNo: '',
+    identifyCode: '',
+  });
+  const ruleList = reactive({
+    phone: [{ validator, message: '', c: 'mobile' }],
+    code: [{ validator, message: '', c: 'code' }],
   });
 
   const codeBtn = reactive({
@@ -15,7 +24,6 @@
     disabled: false,
   });
   const showPopup = ref(false);
-  const v = ref();
 
   const countDown = () => {
     let time = 3;
@@ -29,7 +37,6 @@
         showPopup.value = false;
         codeBtn.text = '获取验证码';
         codeBtn.disabled = false;
-        v.value.refresh();
       }
     }, 1000);
   };
@@ -40,7 +47,6 @@
     console.log('checkAndSendShortMsg 响应结果：', response);
     if (!response.successTag) {
       showFailToast(response.message);
-      v.value?.refresh();
       return;
     } else {
       showSuccessToast('验证码发送成功');
@@ -64,7 +70,9 @@
       return;
     }
     showPopup.value = true;
+    console.log('getIdentifyCodeCode', showPopup.value);
   };
+  console.log('组件外部的 modelValue：', showPopup.value);
 </script>
 
 <template>
@@ -94,10 +102,7 @@
     </div>
   </van-form>
 
-  <van-popup v-model:show="showPopup">
-    <verify :phone="formData.mobilePhoneNo" ref="v" @finished="onFinished" />
-  </van-popup>
-
+  <verify v-model="showPopup" :phone="formData.mobilePhoneNo" @finished="onFinished" />
 </template>
 
 <style lang="scss" scoped>
@@ -108,12 +113,14 @@
 
   .form-item {
     position: relative;
+
     .btn-code {
       position: absolute;
       top: 50%;
       right: 0;
       transform: translateY(-50%);
       height: 32px;
+
       &:disabled {
         background-color: #a8a5a5;
         border-color: #a8a5a5;
