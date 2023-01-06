@@ -6,6 +6,7 @@ axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 //设置请求头
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
+axios.defaults.headers.post["X-Requested-With"] = "XMLHttpRequest2";
 
 //设置超时
 axios.defaults.timeout = 10000;
@@ -37,9 +38,10 @@ axios.interceptors.response.use(
 
 //封装post/get请求
 export default {
-  post(url: string, data: Record<any, any>) {
+  post(url: string, data: Record<string, string> | FormData) {
     return new Promise<Record<string, string>>((resolve, reject) => {
       axios({
+        headers: { 'Content-type': 'application/json;charset=UTF-8' },
         method: "post",
         url,
         //data,
@@ -53,10 +55,27 @@ export default {
         });
     });
   },
+  postBlob(url: string, formData: FormData) {
+    return new Promise<Record<string, string>>((resolve, reject) => {
+      axios({
+        method: "post",
+        url,
+        headers: { 'Content-type': 'multipart/form-data', },
+        data: formData
+      })
+        .then(res => {
+          resolve(res.data);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
 
   get(url: string, data: Record<any, any>) {
     return new Promise((resolve, reject) => {
       axios({
+        headers: { 'content-type': 'application/json;charset=UTF-8' },
         method: "get",
         url,
         params: data

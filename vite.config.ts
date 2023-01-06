@@ -21,6 +21,7 @@ export default defineConfig({
         // target: "http://www.safereborn.com:8088/",
         // target: "http://www.art-tok.cn:8085",
         target : 'http://www.safereborn.com:8090/',
+        // target : 'http://192.168.0.131:8090/',
         changeOrigin: true, //开启代理
         rewrite: (path) => path.replace(/^\/api\/remote/, "")
       }

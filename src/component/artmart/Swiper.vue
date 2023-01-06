@@ -18,7 +18,7 @@
 <template>
   <div class="swiper">
     <van-swipe autoplay="3000">
-      <van-swipe-item v-for="image in imageList" :key="image">
+      <van-swipe-item v-for="image in imageList" :key="image.name">
         <img class="img" :src="baseImgURL + image.img" :alt="image.name" />
       </van-swipe-item>
     </van-swipe>

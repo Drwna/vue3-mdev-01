@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { computed, defineComponent, defineEmits, onMounted, ref, watch, watchEffect } from 'vue';
+  import { computed, defineComponent, ref, watch } from 'vue';
   import { getIdentifyCode } from '@/api/user';
   import { blurBg } from '@/utils';
   import { showFailToast } from 'vant/es';
@@ -64,10 +64,17 @@
       refresh();
     }
   });
+
+  const onClickOverlay = (e: Event) => {
+    if (e.target === e.currentTarget) {
+      show.value = false;
+    }
+  };
+
 </script>
 
 <template>
-  <van-popup v-model:show="show">
+  <div class="popup" v-if="show" @click="onClickOverlay">
     <div class="box">
       <div class="select-word">
         <div>成语：{{ idiom }}</div>
@@ -86,12 +93,27 @@
         </div>
       </div>
     </div>
-  </van-popup>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .box {
     width: calc(100vw - 2 * var(--van-padding-md));
+    background-color: #fff;
 
     .select-word {
       display: flex;
