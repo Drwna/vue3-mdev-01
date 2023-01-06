@@ -9,7 +9,7 @@ export const formData = reactive({
   confirmPwd: ''
 });
 
-export const ruleList = reactive({
+export const ruleList:any = reactive({
   userNo: [{validator, message: '', c: 'email'}],
   userEmail: [{validator, message: '', c: 'email'}],
   userPwd: [{validator, message: '', c: 'len', h: '3,7', m: '3和7'}],

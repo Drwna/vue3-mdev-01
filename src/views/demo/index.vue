@@ -24,8 +24,7 @@
             <div class="AboutUs_description__pEykJ AboutUs_about__description-2__32-g9">以多重方式呈现<em class="AboutUs_description__em__2z0wF">「新潮酷」的艺术新体验</em></div>
             <button class="AboutUs_about__button__35Nrl">立即体验</button>
           </div>
-          <div class="AboutUs_about__right__203m1"
-            ><img alt="artmart app" class="AboutUs_about__image__39Zfv" src="	https://artmart.cn/static/media/about-us-phone-model-2x.7cb37f41.png" />
+          <div class="AboutUs_about__right__203m1">
           </div>
         </div>
       </div>

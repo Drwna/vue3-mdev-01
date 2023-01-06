@@ -4,7 +4,7 @@ import http from "@/utils/http";
 // to server: /api/remote/member/facademember/getWithEqualTest
 
 export function apiTest() {
-  let objParam = {
+  let objParam: any = {
     languageTag: 1,
     code: "w-atg-p-about"
   };

@@ -47,6 +47,11 @@ const routes = [
     component: () => import('@/views/verifyPage/Index.vue'),
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/Index.vue'),
+  },
+  {
     path: '/avatar',
     name: 'avatar',
     component: () => import('@/views/avatar/Index.vue'),
@@ -54,8 +59,8 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import('@/views/error.vue'),
-  },
+    component: () => import('@/views/Error.vue'),
+  }
 ];
 
 export default routes;

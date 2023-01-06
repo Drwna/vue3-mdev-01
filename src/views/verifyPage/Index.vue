@@ -4,19 +4,10 @@
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
   import { checkAndSendShortMsg, registerByPhone } from '@/api/user';
-  import { validator } from '@/utils/verify';
+  import { formData, ruleList } from '@/views/verifyPage/index';
 
   defineComponent({
     name: 'VerifyPage',
-  });
-
-  const formData = reactive({
-    mobilePhoneNo: '',
-    identifyCode: '',
-  });
-  const ruleList = reactive({
-    phone: [{ validator, message: '', c: 'mobile' }],
-    code: [{ validator, message: '', c: 'code' }],
   });
 
   const codeBtn = reactive({
