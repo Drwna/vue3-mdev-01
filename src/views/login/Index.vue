@@ -10,11 +10,11 @@
     name: 'Login',
   });
 
-  const formData: any = reactive({
+  const formData = reactive({
     mobilePhoneNo: '',
     identifyCode: '',
   });
-  const ruleList: any = reactive({
+  const ruleList = reactive({
     phone: [{ validator, message: '', c: 'mobile' }],
     code: [{ validator, message: '', c: 'code' }],
   });

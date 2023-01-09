@@ -3,10 +3,10 @@
   import SlideVerify from 'vue3-slide-verify';
   import type { SlideVerifyInstance } from 'vue3-slide-verify';
   import 'vue3-slide-verify/dist/style.css';
-  import { formData, ruleList } from "@/views/register/index";
   import img01 from '@/assets/images/sliderVerify/verify01.jpg';
   import img02 from '@/assets/images/sliderVerify/verify02.jpg';
   import img03 from '@/assets/images/sliderVerify/verify03.jpg';
+  import { formData, ruleList } from '@/views/register/index.ts';
 
   defineComponent({
     name: 'Index',

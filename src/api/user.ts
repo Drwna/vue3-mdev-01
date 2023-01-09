@@ -1,5 +1,5 @@
 import http from '@/utils/http';
-import type { formData } from '@/views/register/register';
+import type { formData } from '@/views/register/Register.vue';
 import type { formData as RegisterByPhone } from '@/views/verifyPage/index';
 
 export function register(objParam: typeof formData) {

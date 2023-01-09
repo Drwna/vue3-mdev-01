@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/register/register.vue'),
+    component: () => import('@/views/register/Register.vue'),
   },
   {
     path: '/artmart',
@@ -55,6 +55,16 @@ const routes = [
     path: '/avatar',
     name: 'avatar',
     component: () => import('@/views/avatar/Index.vue'),
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('@/views/profile/Index.vue'),
+  },
+  {
+    path: '/profileList',
+    name: 'profileList',
+    component: () => import('@/views/profileList/ProfileList.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

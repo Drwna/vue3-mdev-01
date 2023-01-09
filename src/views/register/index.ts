@@ -1,15 +1,14 @@
-import { reactive } from "vue";
-import { validator } from "@/utils/verify";
-
+import { reactive } from 'vue';
+import { validator } from '@/utils/verify';
 
 export const formData = reactive({
   phone: '',
   code: '',
 });
 
-export const ruleList: any = reactive({
-  phone: [{ validator, message: "", c: "mobile" }],
-  code: [{ validator, message: "", c: "code" }]
+export const ruleList = reactive({
+  phone: [{ validator, message: '', c: 'mobile' }],
+  code: [{ validator, message: '', c: 'code' }],
 });
 // const ruleList = reactive({
 //   phone: [

@@ -6,7 +6,7 @@ export const formData = reactive({
   identifyCode: '',
 });
 
-export const ruleList: any = reactive({
+export const ruleList = reactive({
   phone: [{ validator, message: '', c: 'mobile' }],
   code: [{ validator, message: '', c: 'code' }],
 });

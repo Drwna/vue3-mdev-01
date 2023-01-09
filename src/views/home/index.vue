@@ -14,6 +14,7 @@
   <van-cell title="人机验证 注册" is-link to="/verify" />
   <van-cell title="短信登录" is-link to="/login" />
   <van-cell title="选择头像" is-link to="/avatar" />
+  <van-cell title="个人信息" is-link to="/profile" />
 </template>
 
 <style lang="scss" scoped>
