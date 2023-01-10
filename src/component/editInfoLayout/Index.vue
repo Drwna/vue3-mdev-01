@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-  import { defineComponent, reactive, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import Icon from '@/component/Icon.vue';
   import { useRouter } from 'vue-router';
   import { editUserProfile } from '@/api/user';
+  import { formData } from '@/component/editInfoLayout/editInfoLayout';
 
-  defineComponent({
-    name: 'EditInfo',
-  });
+  defineComponent({ name: 'editInfoLayout' });
 
-  const formData = reactive<{ userEMail: string; nickName: string } | { userEMail: string } | { nickName: string }>({ nickName: '' });
   const router = useRouter();
   const onBack = () => router.back();
   const onSave = async () => {
