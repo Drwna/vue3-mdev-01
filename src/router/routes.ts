@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/register/Register.vue'),
+    component: () => import('@/views/register/register.vue'),
   },
   {
     path: '/artmart',
@@ -34,7 +34,7 @@ const routes = [
   {
     path: '/demo',
     name: 'demo',
-    component: ()=> import('@/views/demo/index.vue'),
+    component: () => import('@/views/demo/index.vue'),
   },
   {
     path: '/register',
@@ -63,14 +63,24 @@ const routes = [
   },
   {
     path: '/profileList',
-    name: 'profileList',
-    component: () => import('@/views/profileList/ProfileList.vue'),
+    children: [
+      {
+        path: '',
+        name: 'profileList',
+        component: () => import('@/views/profileList/ProfileList.vue'),
+      },
+      {
+        path: 'editNickname',
+        name: 'editNickname',
+        component: () => import('@/views/profileList/editNickName/Index.vue'),
+      },
+    ],
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/Error.vue'),
-  }
+  },
 ];
 
 export default routes;

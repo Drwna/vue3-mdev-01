@@ -1,6 +1,6 @@
 // regRules 类型
 type RegRules = {
-  c: 'len' | 'pwd' | 'dig' | 'telNo' | 'mobile' | 'code' | 'idNo' | 'dateS' | 'date' | 'email';
+  c: 'len' | 'password' | 'pwd' | 'dig' | 'telNo' | 'mobile' | 'code' | 'idNo' | 'dateS' | 'date' | 'email';
   dr: RegExp;
   dm: string;
   r?: string;
@@ -21,6 +21,11 @@ const regRules: RegRules[] = [
     dm: '长度必须在1和30之间！',
     r: '^[a-zA-Z]{h}$',
     m: '长度必须在m之间！',
+  },
+  {
+    c: 'password',
+    dr: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+    dm: '密码必选包含大小写和数字，长度至少8位',
   },
   {
     c: 'pwd',

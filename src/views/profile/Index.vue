@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
+  import { useUserStore } from '@/stores/modules/user';
 
   defineComponent({
     name: 'Index',
   });
+
+  const storeUser = useUserStore();
 </script>
 
 <template>
@@ -12,11 +15,16 @@
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
         <span class="custom-title">
-          <img class="avatar" src="@/assets/images/artmart/avatar.png" alt="avatar" />
+          <img class="avatar" :src="storeUser.avatarUrl" alt="avatar" />
         </span>
         <span class="nickName">昵称</span>
       </template>
     </van-cell>
+    <van-cell title="申购记录" is-link />
+    <van-cell title="我的订单" is-link />
+    <van-cell title="提货记录" is-link />
+    <van-cell title="关于我们" is-link />
+    <van-cell title="当前版本" is-link />
   </div>
 </template>
 

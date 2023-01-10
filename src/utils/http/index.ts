@@ -38,8 +38,8 @@ axios.interceptors.response.use(
 
 //封装post/get请求
 export default {
-  post(url: string, data: Record<string, string> | FormData) {
-    return new Promise<Record<string, string>>((resolve, reject) => {
+  post(url: string, data: Record<string, any> | FormData) {
+    return new Promise<Record<string, any>>((resolve, reject) => {
       axios({
         headers: { 'Content-type': 'application/json;charset=UTF-8' },
         method: "post",

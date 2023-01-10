@@ -3,8 +3,9 @@
   import Verify from '@/component/verify.vue';
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
-  import { checkAndSendShortMsg, getCurrUserInfo, loginByShortMsg } from "@/api/user";
+  import { checkAndSendShortMsg, getCurrUserInfo, loginByShortMsg } from '@/api/user';
   import { validator } from '@/utils/verify';
+  import { useUserStore } from '@/stores/modules/user';
 
   defineComponent({
     name: 'Login',
@@ -19,11 +20,16 @@
     code: [{ validator, message: '', c: 'code' }],
   });
 
+  const storeUser = useUserStore();
   const userInfo = reactive<Record<string, string>>({});
   const getInfo = async () => {
     const response = await getCurrUserInfo();
-    console.log('getCurrUserInfo 响应结果：', response);
     Object.assign(userInfo, response);
+    const { userID, avatarUrl } = response.rtnObj1;
+    storeUser.setUserInfo({
+      userID,
+      avatarUrl,
+    });
   };
 
   const codeBtn = reactive({
@@ -87,7 +93,15 @@
 
   <van-form @submit="onLogin">
     <van-cell-group inset>
-      <van-field v-model="formData.mobilePhoneNo" :rules="ruleList.phone" name="phone" label="手机号" placeholder="手机号" maxlength="11" />
+      <van-field
+        v-model="formData.mobilePhoneNo"
+        :rules="ruleList.phone"
+        type="number"
+        name="phone"
+        label="手机号"
+        placeholder="手机号"
+        maxlength="11"
+      />
       <div class="form-item">
         <van-field
           v-model="formData.identifyCode"
@@ -112,7 +126,6 @@
   <hr />
   <van-button type="primary" @click="getInfo">获取当前用户信息</van-button>
   <div>{{ userInfo }}</div>
-
 </template>
 
 <style lang="scss" scoped>

@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import router from '@/router';
+  import router from '@/router';
 
-const goHome = () => router.push('/');
-
+  const goHome = () => router.push('/');
 </script>
 
 <template>
@@ -13,26 +12,25 @@ const goHome = () => router.push('/');
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  > .text {
-    font-size: 34px;
-    color: #333;
-    padding: 100px 0;
-  }
-  > .button {
-    padding: 20px 40px;
-    background-color: #409eff;
-    color: #fff;
+  .wrapper {
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    border-radius: 4px;
-    margin-top: 20px;
+    > .text {
+      font-size: 34px;
+      color: #333;
+      padding: 100px 0;
+    }
+    > .button {
+      padding: 20px 40px;
+      background-color: #409eff;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
   }
-}
-
 </style>
