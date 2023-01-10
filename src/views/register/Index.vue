@@ -6,6 +6,7 @@
   import img01 from '@/assets/images/sliderVerify/verify01.jpg';
   import img02 from '@/assets/images/sliderVerify/verify02.jpg';
   import img03 from '@/assets/images/sliderVerify/verify03.jpg';
+  // @ts-ignore
   import { formData, ruleList } from '@/views/register/index.ts';
 
   defineComponent({

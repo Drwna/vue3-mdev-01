@@ -4,7 +4,8 @@
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
   import { checkAndSendShortMsg, registerByPhone } from '@/api/user';
-  import { formData, ruleList } from '@/views/verifyPage/index';
+  // @ts-ignore
+  import { formData, ruleList } from '@/views/verifyPage/index.ts';
 
   defineComponent({
     name: 'VerifyPage',
@@ -87,6 +88,14 @@
           {{ codeBtn.text }}
         </van-button>
       </div>
+      <van-field v-model="formData.password" :rules="ruleList.password" name="password" label="密码" placeholder="密码" />
+      <van-field
+        v-model="formData.confirmPassword"
+        :rules="ruleList.confirmPassword"
+        name="password"
+        label="确认密码"
+        placeholder="确认密码"
+      />
     </van-cell-group>
     <div style="margin: 16px">
       <van-button round block type="primary" native-type="submit">注册</van-button>

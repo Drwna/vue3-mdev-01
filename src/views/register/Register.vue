@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  // @ts-ignore
   import { onRegister, formData, ruleList } from '@/views/register/register.ts';
 </script>
 

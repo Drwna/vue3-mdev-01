@@ -3,10 +3,9 @@
   import { getIdentifyCode } from '@/api/user';
   import { blurBg } from '@/utils';
   import { showFailToast } from 'vant/es';
+  import Icon from '@/component/Icon.vue';
 
-  defineComponent({
-    name: 'verify',
-  });
+  defineComponent({ name: 'verify' });
 
   const props = defineProps({
     phone: {
@@ -42,19 +41,6 @@
       showFailToast(response.message);
     }
   };
-  const onClick = (e: Event) => {
-    const target = (e?.target as HTMLElement).dataset.word;
-    if (!target) return;
-    const index = idiomArray.value.indexOf(target);
-    if (index >= 0) {
-      idiomArray.value.splice(index, 1);
-      return;
-    }
-    idiomArray.value.push(target);
-    if (idiomArray.value.length >= idiomString.value.length) {
-      emit('finished', idiom.value);
-    }
-  };
   const refresh = () => {
     setWord();
     idiomArray.value = [];
@@ -64,20 +50,42 @@
       refresh();
     }
   });
-
+  const close = () => (show.value = false);
+  const onClick = (e: Event) => {
+    const target = (e?.target as HTMLElement).dataset.word;
+    if (!target) return;
+    const index = idiomArray.value.indexOf(target);
+    if (index >= 0) {
+      idiomArray.value.splice(index, 1);
+      return;
+    }
+    idiomArray.value.push(target);
+  };
   const onClickOverlay = (e: Event) => {
     if (e.target === e.currentTarget) {
-      show.value = false;
+      close();
     }
   };
-
+  const onConfirm = () => {
+    if (idiomArray.value.length >= idiomString.value.length) {
+      emit('finished', idiom.value);
+    } else {
+      showFailToast('请排列好文字!');
+    }
+  };
 </script>
 
 <template>
   <div class="popup" v-if="show" @click="onClickOverlay">
     <div class="box">
-      <div class="select-word">
-        <div>成语：{{ idiom }}</div>
+      <div class="close" @click="close">
+        <Icon name="close" />
+      </div>
+      <h3 class="title">请点击文字，排列成正确的顺序</h3>
+      <div class="result">
+        <div class="idiom">
+          {{ idiom }}
+        </div>
         <button class="refresh" @click="refresh">刷新</button>
       </div>
       <div class="words" ref="div">
@@ -92,12 +100,14 @@
           {{ word }}
         </div>
       </div>
+      <div class="confirm">
+        <van-button @click="onConfirm" block type="primary">确认</van-button>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
   .popup {
     position: fixed;
     top: 0;
@@ -114,21 +124,42 @@
   .box {
     width: calc(100vw - 2 * var(--van-padding-md));
     background-color: #fff;
+    border-radius: 10px;
+    padding-top: 20px;
 
-    .select-word {
+    .close {
+      text-align: right;
+      padding-right: 16px;
+      font-size: 14px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 16px;
+      padding-bottom: 10px;
+    }
+
+    .result {
       display: flex;
       justify-content: space-between;
       align-items: center;
       text-align: right;
       padding: 10px 20px;
-      font-size: 20px;
+      font-size: 16px;
+
+      .idiom {
+        flex-grow: 1;
+        text-align: center;
+        color: #990505;
+        font-size: 20px;
+      }
 
       .refresh {
         border: none;
-        background: #00ffff;
+        background: var(--van-button-primary-background);
         cursor: pointer;
-        font-size: 16px;
-        color: #000;
+        font-size: 14px;
+        color: #fff;
         padding: 6px;
         border-radius: 4px;
       }
@@ -150,6 +181,12 @@
           background-color: #999999;
         }
       }
+    }
+
+    .confirm {
+      padding: 16px;
+      display: flex;
+      justify-content: center;
     }
   }
 </style>

@@ -1,4 +1,4 @@
-import Verify from '../src/component/verify.vue';
+import Verify from '../src/component/Verify.vue';
 
 export type VerifyType = InstanceType<typeof Verify>;
 
