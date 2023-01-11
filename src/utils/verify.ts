@@ -1,6 +1,6 @@
 // regRules 类型
 type RegRules = {
-  c: 'len' | 'password' | 'pwd' | 'dig' | 'telNo' | 'mobile' | 'code' | 'idNo' | 'dateS' | 'date' | 'email';
+  c: 'len' | 'password' | 'pwd' | 'nickName' | 'dig' | 'telNo' | 'mobile' | 'code' | 'idNo' | 'dateS' | 'date' | 'email';
   dr: RegExp;
   dm: string;
   r?: string;
@@ -33,6 +33,11 @@ const regRules: RegRules[] = [
     dm: '长度必须在1和10之间！',
     r: '^[a-zA-Z]{h}$',
     m: '长度必须在m之间！',
+  },
+  {
+    c: 'nickName',
+    dr: /^[\u4e00-\u9fa5_a-zA-Z0-9]{1,10}$/,
+    dm: '长度必须在1和10之间！',
   },
   {
     c: 'dig',

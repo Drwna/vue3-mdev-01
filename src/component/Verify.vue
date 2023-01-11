@@ -32,7 +32,12 @@
   const idiom = computed(() => idiomArray.value.map((w) => w.slice(0, 1)).join(''));
 
   const setWord = async () => {
+    // const isEmail = props.phone.includes('@');
+    // const key = isEmail ? 'uerEMail' : 'mobilePhoneNo';
+    // const method = isEmail ? 'sendVerifyCodeByEmail' : 'getIdentifyCode';
+    // console.log(key, method);
     const response = await getIdentifyCode({ mobilePhoneNo: props.phone });
+
     console.log('getIdentifyCode 响应结果：', response);
     if (response.successTag) {
       blurBg(div.value!);

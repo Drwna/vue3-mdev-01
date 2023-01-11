@@ -1,16 +1,18 @@
 <script lang="ts" setup>
   import { defineComponent } from 'vue';
   import NavBar from '@/component/artmart/NavBar.vue';
+  import { useRouter } from 'vue-router';
 
   defineComponent({
     name: 'MainLayout',
   });
+  const router = useRouter();
 </script>
 
 <template>
   <div class="layout">
     <header class="header">
-      <h1>artmart.</h1>
+      <h1 @click="router.push('/')">Cosmos</h1>
     </header>
     <main class="main">
       <slot />
@@ -22,7 +24,6 @@
 </template>
 
 <style lang="scss" scoped>
-
   .layout {
     width: 100%;
     height: 100%;

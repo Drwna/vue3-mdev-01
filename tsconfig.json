@@ -2,9 +2,9 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
     "env.d.ts",
-    "src/**/*",
     "src/**/*.vue",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*",
   ],
   "compilerOptions": {
     "baseUrl": ".",

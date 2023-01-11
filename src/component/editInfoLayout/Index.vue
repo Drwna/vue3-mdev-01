@@ -1,33 +1,32 @@
 <script lang="ts" setup>
-  import { defineComponent, reactive, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import Icon from '@/component/Icon.vue';
   import { useRouter } from 'vue-router';
-  import { editUserProfile } from '@/api/user';
 
-  defineComponent({ name: 'EditInfo' });
-  const emit = defineEmits(['click']);
+  defineComponent({ name: 'editInfoLayout' });
+  withDefaults(
+    defineProps<{
+      title: string;
+      hasSaveBtn?: boolean;
+    }>(),
+    { hasSaveBtn: true },
+  );
 
-  const formData = reactive<{ userEMail: string; nickName: string } | { userEMail: string } | { nickName: string }>({ nickName: '' });
+  defineEmits<{ click: (e: Event) => void }>();
+
   const router = useRouter();
   const onBack = () => router.back();
-  const onClick = async () => {
-    console.log('保存', formData);
-    const response = await editUserProfile(formData);
-    console.log('updateUserInfo 响应结果：', response);
-    emit('click');
-  };
 </script>
 
 <template>
   <div class="edit">
     <div class="bar">
       <Icon @click="onBack" class="bar-icon" name="leftArrow" />
-      <span>编辑昵称</span>
-      <button @click="onClick" class="bar-button" type="button">保存</button>
+      <span>{{ title }}</span>
+      <button v-if="hasSaveBtn" @click="$emit('save')" class="bar-button" type="button">保存</button>
     </div>
     <div class="content">
       <slot />
-<!--      <input type="text" v-model="formData.nickName" />-->
     </div>
   </div>
 </template>

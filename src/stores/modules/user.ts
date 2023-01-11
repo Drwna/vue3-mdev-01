@@ -1,25 +1,28 @@
 import { defineStore } from 'pinia';
 
 interface StoreUser {
-  userID: string;
+  nickName: string;
   avatarUrl: string;
+  userEMail: string;
 }
 
-const avatarBaseURL = 'https://cosmos-app.oss-cn-shanghai.aliyuncs.com/avatar/';
+const baseAvatarUrl = 'https://cosmos-app.oss-cn-shanghai.aliyuncs.com/avatar/';
 export const useUserStore = defineStore('userInfo', {
   state: (): StoreUser => ({
-    userID: '',
+    nickName: '',
     avatarUrl: '',
+    userEMail: '',
   }),
   actions: {
-    setUserInfo({ userID, avatarUrl }: StoreUser) {
-      this.userID = userID;
-      this.avatarUrl = avatarBaseURL + avatarUrl;
+    setUserInfo({ avatarUrl, nickName, userEMail }: StoreUser) {
+      this.nickName = nickName;
+      this.avatarUrl = baseAvatarUrl + avatarUrl;
+      this.userEMail = userEMail;
     },
   },
   persist: {
     key: 'userInfo',
     storage: localStorage,
-    paths: ['avatarUrl'],
+    paths: ['nickName', 'avatarUrl', 'userEMail'],
   },
 });

@@ -16,10 +16,13 @@ declare module '@vue/runtime-core' {
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
     VanIcon: typeof import('vant/es')['Icon']
+    VanList: typeof import('vant/es')['List']
     VanPopup: typeof import('vant/es')['Popup']
     VanRow: typeof import('vant/es')['Row']
     VanSearch: typeof import('vant/es')['Search']
+    VanSticky: typeof import('vant/es')['Sticky']
     VanSwipe: typeof import('vant/es')['Swipe']
+    VanSwipeCell: typeof import('vant/es')['SwipeCell']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
   }
 }

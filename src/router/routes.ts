@@ -12,8 +12,8 @@ const routes = [
     component: () => import('@/views/register/register.vue'),
   },
   {
-    path: '/artmart',
-    name: 'artmart',
+    path: '/cosmos',
+    name: 'cosmos',
     component: () => import('@/views/artmart/index.vue'),
   },
   {
@@ -52,6 +52,21 @@ const routes = [
     component: () => import('@/views/login/Index.vue'),
   },
   {
+    path: '/passwordLogin',
+    name: 'passwordLogin',
+    component: () => import('@/views/login/PasswordLogin.vue'),
+  },
+  {
+    path: '/resetPassword',
+    name: 'resetPassword',
+    component: () => import('@/views/resetPassword/Index.vue'),
+  },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: () => import('@/views/auth/Index.vue'),
+  },
+  {
     path: '/avatar',
     name: 'avatar',
     component: () => import('@/views/avatar/Index.vue'),
@@ -74,12 +89,22 @@ const routes = [
         name: 'editNickname',
         component: () => import('@/views/profileList/editNickName/Index.vue'),
       },
+      {
+        path: 'editEMail',
+        name: 'editEMail',
+        component: () => import('@/views/profileList/editEMail/Index.vue'),
+      },
     ],
+  },
+  {
+    path: '/list',
+    name: 'list',
+    component: () => import('@/views/list/index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import('@/views/Error.vue'),
+    component: () => import('@/views/error/index.vue'),
   },
 ];
 

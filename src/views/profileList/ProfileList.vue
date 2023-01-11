@@ -60,9 +60,14 @@
     isShowModal.value = false;
     await upload();
   };
+  const goAuth = () => router.push('/auth');
 </script>
 
 <template>
+  <h1>
+    个人信息
+    <Icon name="leftArrow" @click="router.back()" />
+  </h1>
   <div class="avatar">
     <div class="avatar-img">
       <img @click.stop="previewAvatar" :src="avatarUrl" alt="avatar" />
@@ -73,25 +78,25 @@
     <li class="list-item" @click="router.push('profileList/editNickName')">
       <div class="content">
         <div class="title">昵称</div>
-        <div class="value"> name</div>
+        <div class="value">{{ storeUser.nickName }}</div>
       </div>
       <Icon name="artmart-arrow" />
     </li>
-    <li class="list-item">
+    <li class="list-item" @click="router.push('profileList/editEMail')">
       <div class="content">
         <div class="title">邮箱</div>
-        <div class="value">example@qq.com</div>
+        <div class="value">{{ storeUser.userEMail }}</div>
       </div>
       <Icon name="artmart-arrow" />
     </li>
-    <li class="list-item">
+    <li class="list-item" @click="goAuth">
       <div class="content">
         <div class="title">实名认证</div>
         <div class="value">未认证</div>
       </div>
       <Icon name="artmart-arrow" />
     </li>
-    <li class="list-item">
+    <li class="list-item" @click="router.push('resetPassword')">
       <div class="content">
         <div class="title">重置密码</div>
         <div class="value"></div>
@@ -127,6 +132,18 @@
 </template>
 
 <style lang="scss" scoped>
+  h1 {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    .icon {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 10px;
+    }
+  }
+
   .avatar {
     display: flex;
     justify-content: center;

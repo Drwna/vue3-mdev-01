@@ -1,11 +1,13 @@
 <script lang="ts" setup>
   import { defineComponent, reactive, ref } from 'vue';
-  import Verify from '@/component/verify.vue';
+  import Verify from '@/component/Verify.vue';
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
   import { checkAndSendShortMsg, getCurrUserInfo, loginByShortMsg } from '@/api/user';
   import { validator } from '@/utils/verify';
   import { useUserStore } from '@/stores/modules/user';
+  import router from '@/router';
+  import Icon from '@/component/Icon.vue';
 
   defineComponent({
     name: 'Login',
@@ -24,12 +26,15 @@
   const userInfo = reactive<Record<string, string>>({});
   const getInfo = async () => {
     const response = await getCurrUserInfo();
+    console.log(response);
     Object.assign(userInfo, response);
-    const { userID, avatarUrl } = response.rtnObj1;
+    const { avatarUrl, nickName, userEMail } = response.rtnObj1;
     storeUser.setUserInfo({
-      userID,
       avatarUrl,
+      nickName,
+      userEMail,
     });
+    await router.push('/cosmos');
   };
 
   const codeBtn = reactive({
@@ -77,7 +82,7 @@
       showFailToast(response.message);
     }
   };
-  const getIdentifyCodeCode = async () => {
+  const getIdentifyCode = async () => {
     if (!formData.mobilePhoneNo) {
       showFailToast('请输入手机号');
       return;
@@ -88,7 +93,10 @@
 </script>
 
 <template>
-  <h1>登录</h1>
+  <h1>
+    登录
+    <Icon name="leftArrow" @click="router.back" />
+  </h1>
   <hr />
 
   <van-form @submit="onLogin">
@@ -112,7 +120,7 @@
           placeholder="验证码"
           maxlength="6"
         />
-        <van-button @click="getIdentifyCodeCode" :disabled="codeBtn.disabled" class="btn-code" round type="primary">
+        <van-button @click="getIdentifyCode" :disabled="codeBtn.disabled" class="btn-code" round type="primary">
           {{ codeBtn.text }}
         </van-button>
       </div>
@@ -132,6 +140,13 @@
   h1 {
     padding-top: 20px;
     text-align: center;
+    font-size: 24px;
+    .icon {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 10px;
+    }
   }
 
   .form-item {

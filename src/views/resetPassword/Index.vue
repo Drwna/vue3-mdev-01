@@ -2,25 +2,31 @@
   import { defineComponent, reactive, ref } from 'vue';
   import Verify from '@/component/Verify.vue';
   import { showFailToast, showSuccessToast } from 'vant';
-  import 'vant/es/toast/style';
-  import { checkAndSendShortMsg, registerByPhone } from '@/api/user';
-  import { formData, ruleList } from '@/views/verifyPage/verifyPage';
+  import { checkAndSendShortMsg, resetPwd } from '@/api/user';
+  import { validator } from '@/utils/verify';
   import Icon from '@/component/Icon.vue';
   import router from '@/router';
 
-  defineComponent({
-    name: 'VerifyPage',
-  });
+  defineComponent({ name: 'ResetPassword' });
 
+  const formData = reactive({
+    mobilePhoneNo: '',
+    userPwd: '',
+    identifyCode: '',
+  });
+  const confirmPwd = ref('');
+  const ruleList = reactive({
+    mobilePhoneNo: [{ validator, message: '', c: 'mobile' }],
+    userPwd: [{ validator, message: '', c: 'password' }],
+    identifyCode: [{ validator, message: '', c: 'code' }],
+  });
   const codeBtn = reactive({
     text: '获取验证码',
     disabled: false,
   });
-  const confirmPwd = ref('');
   const showPopup = ref(false);
 
-  const countDown = () => {
-    let time = 3;
+  const countDown = (time = 60) => {
     codeBtn.text = time + 's后重试';
     codeBtn.disabled = true;
     const timer = setInterval(() => {
@@ -46,58 +52,67 @@
       showSuccessToast('验证码发送成功');
     }
     showPopup.value = false;
-    countDown();
+    countDown(3);
   };
-  const onRegister = async () => {
-    console.log('注册数据：', formData);
-    const response = await registerByPhone(formData);
-    console.log('registerByPhone 响应结果：', response);
+  const onSubmit = async () => {
+    console.log('reset password数据：', formData);
+    const response = await resetPwd(formData);
+    console.log('响应结果：', response);
     if (response.successTag) {
       showSuccessToast(response.message);
     } else {
       showFailToast(response.message);
     }
   };
-  const getIdentifyCodeCode = async () => {
+  const getIdentifyCode = () => {
+    console.log('get identify code', showPopup.value);
+    console.log('formData ', formData);
     if (!formData.mobilePhoneNo) {
       showFailToast('请输入手机号');
       return;
     }
     showPopup.value = true;
-    console.log('getIdentifyCodeCode', showPopup.value);
+    console.log('getIdentifyCode', showPopup.value);
   };
-  console.log('组件外部的 modelValue：', showPopup.value);
 </script>
 
 <template>
-  <h1
-    >注册
+  <h1>
+    重置密码
     <Icon name="leftArrow" @click="router.back" />
   </h1>
+
   <hr />
 
-  <van-form @submit="onRegister">
+  <van-form @submit="onSubmit">
     <van-cell-group inset>
-      <van-field v-model="formData.mobilePhoneNo" :rules="ruleList.phone" name="phone" label="手机号" placeholder="手机号" maxlength="11" />
+      <van-field
+        v-model="formData.mobilePhoneNo"
+        :rules="ruleList.mobilePhoneNo"
+        name="phone"
+        label="手机号"
+        placeholder="手机号"
+        maxlength="11"
+      />
       <div class="form-item">
         <van-field
           v-model="formData.identifyCode"
-          :rules="ruleList.code"
+          :rules="ruleList.identifyCode"
           type="number"
           name="验证码"
           label="验证码"
           placeholder="验证码"
           maxlength="6"
         />
-        <van-button @click="getIdentifyCodeCode" :disabled="codeBtn.disabled" class="btn-code" round type="primary">
+        <van-button @click="getIdentifyCode" :disabled="codeBtn.disabled" class="btn-code" round type="primary">
           {{ codeBtn.text }}
         </van-button>
       </div>
-      <van-field v-model="formData.userPwd" :rules="ruleList.password" name="password" label="密码" placeholder="密码" />
-      <van-field v-model="confirmPwd" name="password" label="确认密码" placeholder="确认密码" />
+      <van-field v-model="formData.userPwd" :rules="ruleList.userPwd" name="password" label="密码" placeholder="密码" />
+      <van-field v-model="confirmPwd" :rules="ruleList.userPwd" name="password" label="确认密码" placeholder="确认密码" />
     </van-cell-group>
     <div style="margin: 16px">
-      <van-button round block type="primary" native-type="submit">注册</van-button>
+      <van-button round block type="primary" native-type="submit">提交</van-button>
     </div>
   </van-form>
 
