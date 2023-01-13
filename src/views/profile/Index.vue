@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import { useUserStore } from '@/stores/modules/user';
   import { useRouter } from 'vue-router';
   import Icon from '@/component/Icon.vue';
+  import { showSuccessToast } from 'vant';
 
   defineComponent({
     name: 'Index',
@@ -10,9 +11,10 @@
 
   const storeUser = useUserStore();
   const router = useRouter();
-  const goAuth = () => router.push('/auth');
+  const goAuth = () => router.push('/profileList/auth');
 
   const logout = () => {
+    showSuccessToast('已退出登录!');
     // TODO
     storeUser.setUserInfo({
       isLogin: false,

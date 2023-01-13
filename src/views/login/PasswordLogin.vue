@@ -6,7 +6,7 @@
   import { validator } from '@/utils/verify';
   import { useUserStore } from '@/stores/modules/user';
   import router from '@/router';
-  import Icon from '@/component/Icon.vue';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({
     name: 'PasswordLogin',
@@ -50,12 +50,7 @@
 </script>
 
 <template>
-  <h1>
-    <Icon name="leftArrow" @click="router.back" />
-    登录
-  </h1>
-  <hr />
-
+  <TitleBar title="密码登录" />
   <van-form @submit="onLogin">
     <van-cell-group inset>
       <van-field

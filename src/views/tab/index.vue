@@ -2,6 +2,7 @@
   import { defineComponent, reactive, ref } from 'vue';
   import { getList } from '@/api/user';
   import Icon from '@/component/Icon.vue';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({ name: 'index' });
 
@@ -36,6 +37,7 @@
 </script>
 
 <template>
+  <TitleBar title="tab list" />
   <div class="tabs">
     <van-tabs v-model:active="active" swipeable>
       <van-tab title="选项 1" name="1">

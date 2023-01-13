@@ -59,7 +59,7 @@
     isShowModal.value = false;
     await upload();
   };
-  const goAuth = () => router.push('/auth');
+  const goAuth = () => router.push('/profileList/auth');
 </script>
 
 <template>
@@ -102,7 +102,7 @@
       </div>
       <Icon name="artmart-arrow" />
     </li>
-    <li class="list-item" >
+    <li class="list-item">
       <div class="content">
         <div class="title">注销账号</div>
         <div class="value"></div>

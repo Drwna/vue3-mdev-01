@@ -4,8 +4,7 @@
   import { showFailToast, showSuccessToast } from 'vant';
   import { checkAndSendShortMsg, resetPwd } from '@/api/user';
   import { validator } from '@/utils/verify';
-  import Icon from '@/component/Icon.vue';
-  import router from '@/router';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({ name: 'ResetPassword' });
 
@@ -77,13 +76,7 @@
 </script>
 
 <template>
-  <h1>
-    重置密码
-    <Icon name="leftArrow" @click="router.back" />
-  </h1>
-
-  <hr />
-
+  <TitleBar title="重置密码" />
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
@@ -120,18 +113,6 @@
 </template>
 
 <style lang="scss" scoped>
-  h1 {
-    padding-top: 20px;
-    text-align: center;
-    font-size: 24px;
-    .icon {
-      width: 16px;
-      height: 16px;
-      position: absolute;
-      left: 10px;
-    }
-  }
-
   .form-item {
     position: relative;
 

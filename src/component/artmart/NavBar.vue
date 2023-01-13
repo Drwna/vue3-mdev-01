@@ -9,19 +9,19 @@
 
 <template>
   <nav class="nav">
-    <router-link to="/artmart">
+    <router-link to="/cosmos">
       <Icon name="artmart-home" />
       <span>首页</span>
     </router-link>
-    <router-link to="/category">
+    <router-link to="/cosmos/category">
       <Icon name="artmart-category" />
       <span>分类</span>
     </router-link>
-    <router-link to="/wishlist">
+    <router-link to="/cosmos/wishlist">
       <Icon name="artmart-like" />
       <span>心愿单</span>
     </router-link>
-    <router-link to="/my">
+    <router-link to="/cosmos/my">
       <Icon name="artmart-my" />
       <span>我的</span>
     </router-link>

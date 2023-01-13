@@ -2,6 +2,7 @@
   import { defineComponent, reactive, ref } from 'vue';
   import ProgressDemo from '@/views/vote/Progress.vue';
   import { getVoteList } from '@/api/user';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({
     name: 'index',
@@ -30,10 +31,10 @@
 
 <template>
   <div>
-    <h1>投票</h1>
-    <hr />
-    <button @click="toggle">显示/隐藏</button>
-
+    <TitleBar title="投票" />
+    <div style="text-align: center">
+      <van-button @click="toggle" type="primary">显示投票结果</van-button>
+    </div>
     <van-popup v-model:show="showBottom" round position="bottom">
       <div class="wrapper">
         <h2>标题</h2>
@@ -49,10 +50,6 @@
 </template>
 
 <style lang="scss" scoped>
-  h1 {
-    text-align: center;
-  }
-
   .wrapper {
     height: 340px;
     h2 {

@@ -2,6 +2,7 @@
   import { defineComponent, reactive, ref } from 'vue';
   import { showConfirmDialog } from 'vant';
   import 'vant/es/dialog/style';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({ name: 'List' });
 
@@ -76,6 +77,7 @@
 <template>
   <div class="list">
     <van-sticky :offset-top="0">
+      <TitleBar style="background-color: #fff" title="list" />
       <van-cell class="order-title">
         <template #title>
           <div class="order-item">

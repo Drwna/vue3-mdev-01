@@ -5,8 +5,7 @@
   import 'vant/es/toast/style';
   import { checkAndSendShortMsg, registerByPhone } from '@/api/user';
   import { formData, ruleList } from '@/views/verifyPage/verifyPage';
-  import Icon from '@/component/Icon.vue';
-  import router from '@/router';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({
     name: 'VerifyPage',
@@ -70,12 +69,7 @@
 </script>
 
 <template>
-  <h1
-    >注册
-    <Icon name="leftArrow" @click="router.back" />
-  </h1>
-  <hr />
-
+  <TitleBar title="注册" />
   <van-form @submit="onRegister">
     <van-cell-group inset>
       <van-field v-model="formData.mobilePhoneNo" :rules="ruleList.phone" name="phone" label="手机号" placeholder="手机号" maxlength="11" />

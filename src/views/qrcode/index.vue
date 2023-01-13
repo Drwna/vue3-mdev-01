@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import { defineComponent, ref } from 'vue';
   import VueQrcode from '@chenfengyuan/vue-qrcode';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({
     name: 'index',
@@ -18,15 +19,16 @@
 </script>
 
 <template>
-  <h1 style="text-align: center">二维码</h1>
-  <hr />
-  <input type="text" :value="text" @input="onInput" style="width: 100%; padding: 12px 0" />
-  <div>
+  <TitleBar title="二维码" />
+  <div style="padding: 0 20px">
+    <input type="text" :value="text" @input="onInput" style="width: 100%; padding: 12px 0" />
     <VueQrcode :value="text" :options="{ color: { dark: '#00ffff', light: '#ffffff' } }" />
-  </div>
-  <div style="margin-top: 100px">
-    <div>扫码预览: </div>
-    <VueQrcode value="http://www.safereborn.com:8084/" />
+    <div style="margin-top: 100px">
+      <div style="font-size: 18px">扫码预览当前网站:</div>
+      <div style="text-align: center">
+        <VueQrcode value="http://www.safereborn.com:8084/" />
+      </div>
+    </div>
   </div>
 </template>
 

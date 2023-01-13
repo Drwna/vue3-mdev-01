@@ -9,29 +9,13 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('@/views/register/register.vue'),
-  },
-  {
     path: '/cosmos',
-    name: 'cosmos',
-    component: () => import('@/views/artmart/index.vue'),
-  },
-  {
-    path: '/category',
-    name: 'category',
-    component: () => import('@/views/category/index.vue'),
-  },
-  {
-    path: '/wishlist',
-    name: 'wishlist',
-    component: () => import('@/views/wishList/index.vue'),
-  },
-  {
-    path: '/my',
-    name: 'my',
-    component: () => import('@/views/my/index.vue'),
+    children: [
+      { path: '', component: () => import('@/views/artmart/index.vue') },
+      { path: 'category', component: () => import('@/views/category/index.vue') },
+      { path: 'wishlist', component: () => import('@/views/wishList/index.vue') },
+      { path: 'my', component: () => import('@/views/my/index.vue') },
+    ],
   },
   {
     path: '/demo',
@@ -41,37 +25,19 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/register/Index.vue'),
-  },
-  {
-    path: '/verify',
-    name: 'verify',
     component: () => import('@/views/verifyPage/Index.vue'),
   },
   {
     path: '/login',
-    name: 'login',
-    component: () => import('@/views/login/Index.vue'),
-  },
-  {
-    path: '/passwordLogin',
-    name: 'passwordLogin',
-    component: () => import('@/views/login/PasswordLogin.vue'),
+    children: [
+      { path: '', component: () => import('@/views/login/Index.vue') },
+      { path: 'password', component: () => import('@/views/login/PasswordLogin.vue') },
+    ],
   },
   {
     path: '/resetPassword',
     name: 'resetPassword',
     component: () => import('@/views/resetPassword/Index.vue'),
-  },
-  {
-    path: '/auth',
-    name: 'auth',
-    component: () => import('@/views/auth/Index.vue'),
-  },
-  {
-    path: '/avatar',
-    name: 'avatar',
-    component: () => import('@/views/avatar/Index.vue'),
   },
   {
     path: '/profile',
@@ -89,21 +55,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/profileList',
     children: [
-      {
-        path: '',
-        name: 'profileList',
-        component: () => import('@/views/profileList/ProfileList.vue'),
-      },
-      {
-        path: 'editNickname',
-        name: 'editNickname',
-        component: () => import('@/views/profileList/editNickName/Index.vue'),
-      },
-      {
-        path: 'editEMail',
-        name: 'editEMail',
-        component: () => import('@/views/profileList/editEMail/Index.vue'),
-      },
+      { path: '', component: () => import('@/views/profileList/ProfileList.vue') },
+      { path: 'editNickname', component: () => import('@/views/profileList/editNickName/Index.vue') },
+      { path: 'editEMail', component: () => import('@/views/profileList/editEMail/Index.vue') },
+      { path: 'auth', component: () => import('@/views/auth/Index.vue') },
+      { path: 'editAvatar', component: () => import('@/views/avatar/Index.vue') },
     ],
   },
   {
