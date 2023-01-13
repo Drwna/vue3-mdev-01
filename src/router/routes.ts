@@ -1,6 +1,8 @@
 import HomeView from '@/views/home/index.vue';
+import { useUserStore } from '@/stores/modules/user';
+import type { RouteRecordRaw } from 'vue-router';
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
@@ -74,6 +76,14 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
+    beforeEnter: (to, from, next) => {
+      const storeUser = useUserStore();
+      if (storeUser.isLogin) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
     component: () => import('@/views/profile/Index.vue'),
   },
   {
@@ -100,6 +110,21 @@ const routes = [
     path: '/list',
     name: 'list',
     component: () => import('@/views/list/index.vue'),
+  },
+  {
+    path: '/tab',
+    name: 'tab',
+    component: () => import('@/views/tab/index.vue'),
+  },
+  {
+    path: '/qrcode',
+    name: 'qrcode',
+    component: () => import('@/views/qrcode/index.vue'),
+  },
+  {
+    path: '/vote',
+    name: 'vote',
+    component: () => import('@/views/vote/index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

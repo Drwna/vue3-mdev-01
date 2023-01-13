@@ -30,6 +30,7 @@
     Object.assign(userInfo, response);
     const { avatarUrl, nickName, userEMail } = response.rtnObj1;
     storeUser.setUserInfo({
+      isLogin: true,
       avatarUrl,
       nickName,
       userEMail,
@@ -78,6 +79,7 @@
     console.log('loginByShortMsg 响应结果：', response);
     if (response.successTag) {
       showSuccessToast(response.message);
+      await getInfo();
     } else {
       showFailToast(response.message);
     }
@@ -132,7 +134,6 @@
   <verify v-model="showPopup" :phone="formData.mobilePhoneNo" @finished="onFinished" />
 
   <hr />
-  <van-button type="primary" @click="getInfo">获取当前用户信息</van-button>
   <div>{{ userInfo }}</div>
 </template>
 

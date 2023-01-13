@@ -11,6 +11,17 @@
   const storeUser = useUserStore();
   const router = useRouter();
   const goAuth = () => router.push('/auth');
+
+  const logout = () => {
+    // TODO
+    storeUser.setUserInfo({
+      isLogin: false,
+      avatarUrl: '',
+      nickName: '',
+      userEMail: '',
+    });
+    router.replace('/');
+  };
 </script>
 
 <template>
@@ -36,6 +47,7 @@
     <van-cell title="提货记录" is-link />
     <van-cell title="关于我们" is-link />
     <van-cell title="当前版本" is-link />
+    <van-cell title="退出登录" is-link @click="logout" />
   </div>
 </template>
 

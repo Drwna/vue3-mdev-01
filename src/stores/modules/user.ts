@@ -1,20 +1,23 @@
 import { defineStore } from 'pinia';
 
 interface StoreUser {
-  nickName: string;
-  avatarUrl: string;
-  userEMail: string;
+  isLogin?: boolean;
+  nickName?: string;
+  avatarUrl?: string;
+  userEMail?: string;
 }
 
 const baseAvatarUrl = 'https://cosmos-app.oss-cn-shanghai.aliyuncs.com/avatar/';
 export const useUserStore = defineStore('userInfo', {
   state: (): StoreUser => ({
+    isLogin: false,
     nickName: '',
     avatarUrl: '',
     userEMail: '',
   }),
   actions: {
-    setUserInfo({ avatarUrl, nickName, userEMail }: StoreUser) {
+    setUserInfo({ isLogin, avatarUrl, nickName, userEMail }: StoreUser) {
+      this.isLogin = isLogin;
       this.nickName = nickName;
       this.avatarUrl = baseAvatarUrl + avatarUrl;
       this.userEMail = userEMail;
@@ -23,6 +26,6 @@ export const useUserStore = defineStore('userInfo', {
   persist: {
     key: 'userInfo',
     storage: localStorage,
-    paths: ['nickName', 'avatarUrl', 'userEMail'],
+    paths: ['isLogin', 'nickName', 'avatarUrl', 'userEMail'],
   },
 });

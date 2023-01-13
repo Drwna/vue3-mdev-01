@@ -7,7 +7,7 @@
 
   const orderList = reactive<{ index: number; orderNo: string; amount: number }[]>([]);
   const createData = () => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       orderList.push({
         index: orderList.length + 1,
         orderNo: Math.floor(Math.random() * 1000000000).toString(),

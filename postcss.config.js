@@ -1,9 +1,11 @@
-const path = require('path');
+/* eslint-disable */
 
-const judgeComponent = (file) => {
-  const ignore = ['vant'];
-  return ignore.some((item) => path.join(file).includes(path.join('node_modules', item)));
-};
+// const path = require('path');
+
+// const judgeComponent = (file) => {
+//   const ignore = ['vant'];
+//   return ignore.some((item) => path.join(file).includes(path.join('node_modules', item)));
+// };
 
 // module.exports = {
 // plugins: {

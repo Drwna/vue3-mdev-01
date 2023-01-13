@@ -12,4 +12,4 @@ export const ruleList = reactive({
 });
 
 const storeUser = useUserStore();
-export const formData = reactive<Pick<FormData, 'nickName'>>({ nickName: storeUser.nickName });
+export const formData = reactive<Pick<FormData, 'nickName'>>({ nickName: storeUser.nickName || '' });

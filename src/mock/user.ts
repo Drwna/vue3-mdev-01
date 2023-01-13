@@ -1,26 +1,26 @@
 export default [
   {
-    url: "/api/mock/user/facadeuser/registerUser",
-    method: "post",
+    url: '/api/mock/user/facadeuser/registerUser',
+    method: 'post',
     response: () => {
       return {
         code: 200,
-        msg: "success",
-        "data|6": ["@integer(0, 1000)"]
+        msg: 'success',
+        'data|6': ['@integer(0, 1000)'],
       };
-    }
+    },
   },
   {
-    url: "/pd/mock/user/facadeuser/registerUser",
-    method: "post",
+    url: '/pd/mock/user/facadeuser/registerUser',
+    method: 'post',
     response: () => {
       return {
         code: 200,
-        msg: "success",
-        "data|6": ["@integer(0, 1000)"]
+        msg: 'success',
+        'data|6': ['@integer(0, 1000)'],
       };
-    }
-  }
+    },
+  },
   // example
   // {
   //   url: "/api/mock/member/facademember/getWithEqualTest",

@@ -48,7 +48,6 @@
     formData.append('file', resultBlob.value as Blob);
     const response = await uploadImg(formData);
     console.log('uploaded 响应结果', response);
-    avatarUrl.value = response.rtnObj1;
     storeUser.avatarUrl = response.rtnObj1;
   };
   const getResult = async () => {
@@ -99,6 +98,13 @@
     <li class="list-item" @click="router.push('resetPassword')">
       <div class="content">
         <div class="title">重置密码</div>
+        <div class="value"></div>
+      </div>
+      <Icon name="artmart-arrow" />
+    </li>
+    <li class="list-item" >
+      <div class="content">
+        <div class="title">注销账号</div>
         <div class="value"></div>
       </div>
       <Icon name="artmart-arrow" />

@@ -51,3 +51,12 @@ export const uploadImg = (objParam: FormData) => {
 export const editUserProfile = (objParam: Partial<EditUserProfile>) => {
   return http.post('/remote/auth/facadeauth/editUserProfile', objParam);
 };
+
+// TODO: mock
+export const getList = (objParam: { page: number }) => {
+  return http.post('/mock/user/facadeuser/list', objParam);
+};
+
+export const getVoteList = (objParam = {}) => {
+  return http.post('/mock/user/facadeuser/vote', objParam);
+};

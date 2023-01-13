@@ -11,9 +11,11 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path "
   },
   "dependencies": {
+    "@chenfengyuan/vue-qrcode": "2",
     "axios": "^1.2.1",
     "pinia": "^2.0.28",
     "pinia-plugin-persistedstate": "^3.0.2",
+    "qrcode": "1",
     "vant": "^4.0.3",
     "vue": "^3.2.45",
     "vue-picture-cropper": "^0.6.1",

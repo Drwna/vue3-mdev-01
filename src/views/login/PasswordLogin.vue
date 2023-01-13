@@ -29,6 +29,7 @@
     Object.assign(userInfo, response);
     const { avatarUrl, nickName, userEMail } = response.rtnObj1;
     storeUser.setUserInfo({
+      isLogin: true,
       avatarUrl,
       nickName,
       userEMail,
