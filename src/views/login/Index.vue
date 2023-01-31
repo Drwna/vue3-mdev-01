@@ -126,7 +126,7 @@
       <van-button round block type="primary" native-type="submit">登录</van-button>
     </div>
   </van-form>
-  <verify v-model="showPopup" :phone="formData.mobilePhoneNo" @finished="onFinished" />
+  <verify v-model="showPopup" :phoneOrEmail="formData.mobilePhoneNo" @finished="onFinished" />
 
   <hr />
   <div>{{ userInfo }}</div>

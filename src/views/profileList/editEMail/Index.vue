@@ -88,7 +88,7 @@
         <van-button round block type="primary" native-type="submit">提交</van-button>
       </div>
     </van-form>
-    <Verify v-model="showPopup" :phone="formData.userEMail" @finished="onFinished" />
+    <Verify v-model="showPopup" :phoneOrEmail="formData.userEMail" @finished="onFinished" />
   </EditInfoLayout>
 </template>
 

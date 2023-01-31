@@ -109,7 +109,7 @@
     </div>
   </van-form>
 
-  <verify v-model="showPopup" :phone="formData.mobilePhoneNo" @finished="onFinished" />
+  <verify v-model="showPopup" :phoneOrEmail="formData.mobilePhoneNo" @finished="onFinished" />
 </template>
 
 <style lang="scss" scoped>

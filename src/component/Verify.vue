@@ -8,7 +8,7 @@
   defineComponent({ name: 'verify' });
 
   const props = defineProps({
-    phone: {
+    phoneOrEmail: {
       type: String,
       required: true,
     },
@@ -31,12 +31,15 @@
   const idiomArray = ref([] as string[]);
   const idiom = computed(() => idiomArray.value.map((w) => w.slice(0, 1)).join(''));
 
+  type ObjParam = {
+    [key in 'userEMail' | 'mobilePhoneNo']: string;
+  };
   const setWord = async () => {
-    // const isEmail = props.phone.includes('@');
-    // const key = isEmail ? 'uerEMail' : 'mobilePhoneNo';
-    // const method = isEmail ? 'sendVerifyCodeByEmail' : 'getIdentifyCode';
-    // console.log(key, method);
-    const response = await getIdentifyCode({ mobilePhoneNo: props.phone });
+    // {"mobilePhoneNo":"13816332625","userEMail":"andysh@aliyun.com"}
+    const key = props.phoneOrEmail.includes('@') ? 'userEMail' : 'mobilePhoneNo';
+    const objParam = { [key]: props.phoneOrEmail } as ObjParam;
+    console.log('getIdentifyCode 请求参数： ====>', objParam);
+    const response = await getIdentifyCode(objParam);
 
     console.log('getIdentifyCode 响应结果：', response);
     if (response.successTag) {

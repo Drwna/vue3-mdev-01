@@ -1,38 +1,22 @@
 <script lang="ts" setup>
-  import { defineComponent, reactive, ref } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import Verify from '@/component/Verify.vue';
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
   import { checkAndSendShortMsg, registerByPhone } from '@/api/user';
   import { formData, ruleList } from '@/views/verifyPage/verifyPage';
   import TitleBar from '@/component/TitleBar.vue';
+  import { useCountDown } from '@/hooks/useCountDown';
 
   defineComponent({
     name: 'VerifyPage',
   });
 
-  const codeBtn = reactive({
-    text: '获取验证码',
-    disabled: false,
-  });
   const confirmPwd = ref('');
   const showPopup = ref(false);
 
-  const countDown = () => {
-    let time = 3;
-    codeBtn.text = time + 's后重试';
-    codeBtn.disabled = true;
-    const timer = setInterval(() => {
-      time--;
-      codeBtn.text = time + 's后重试';
-      if (time <= 0) {
-        clearInterval(timer);
-        showPopup.value = false;
-        codeBtn.text = '获取验证码';
-        codeBtn.disabled = false;
-      }
-    }, 1000);
-  };
+  const { buttonState, startCount } = useCountDown(3);
+
   const onFinished = async (word: string) => {
     console.log('完成', word);
     formData.identifyCode = word;
@@ -45,7 +29,7 @@
       showSuccessToast('验证码发送成功');
     }
     showPopup.value = false;
-    countDown();
+    startCount();
   };
   const onRegister = async () => {
     console.log('注册数据：', formData);
@@ -69,7 +53,7 @@
 </script>
 
 <template>
-  <TitleBar title="注册" />
+  <TitleBar title="手机号注册" />
   <van-form @submit="onRegister">
     <van-cell-group inset>
       <van-field v-model="formData.mobilePhoneNo" :rules="ruleList.phone" name="phone" label="手机号" placeholder="手机号" maxlength="11" />
@@ -83,8 +67,8 @@
           placeholder="验证码"
           maxlength="6"
         />
-        <van-button @click="getIdentifyCodeCode" :disabled="codeBtn.disabled" class="btn-code" round type="primary">
-          {{ codeBtn.text }}
+        <van-button @click="getIdentifyCodeCode" :disabled="buttonState.disabled" class="btn-code" round type="primary">
+          {{ buttonState.text }}
         </van-button>
       </div>
       <van-field v-model="formData.userPwd" :rules="ruleList.password" name="password" label="密码" placeholder="密码" />
@@ -95,7 +79,7 @@
     </div>
   </van-form>
 
-  <verify v-model="showPopup" :phone="formData.mobilePhoneNo" @finished="onFinished" />
+  <verify v-model="showPopup" :phoneOrEmail="formData.mobilePhoneNo" @finished="onFinished" />
 </template>
 
 <style lang="scss" scoped>

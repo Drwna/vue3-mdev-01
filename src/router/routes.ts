@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/verifyPage/Index.vue'),
   },
   {
+    path: '/eRegister',
+    name: 'eRegister',
+    component: () => import('@/views/eRegister/index.vue'),
+  },
+  {
     path: '/login',
     children: [
       { path: '', component: () => import('@/views/login/Index.vue') },
@@ -81,6 +86,16 @@ const routes: RouteRecordRaw[] = [
     path: '/vote',
     name: 'vote',
     component: () => import('@/views/vote/index.vue'),
+  },
+  {
+    path: '/images',
+    name: 'images',
+    component: () => import('@/views/images/index.vue'),
+  },
+  {
+    path: '/select',
+    name: 'select',
+    component: () => import('@/views/select/select.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
