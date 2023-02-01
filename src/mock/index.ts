@@ -1,9 +1,13 @@
 import user from './user';
+import process from 'process';
+
+const env = process.env.NODE_ENV;
+const baseURL = env === 'development' ? '/api' : '/pd';
 
 export default [
   ...user,
   {
-    url: '/api/mock/user/facadeuser/list',
+    url: `${baseURL}/mock/user/facadeuser/list`,
     method: 'post',
     response: (request: any) => {
       const { page } = request.body;
@@ -26,7 +30,7 @@ export default [
     },
   },
   {
-    url: '/api/mock/user/facadeuser/vote',
+    url: `${baseURL}/mock/user/facadeuser/vote`,
     method: 'post',
     response: () => {
       return {
@@ -46,7 +50,7 @@ export default [
     },
   },
   {
-    url: '/api/mock/user/facadeuser/image',
+    url: `${baseURL}/mock/user/facadeuser/image`,
     method: 'post',
     response: (request: any) => {
       const { page } = request.body;
@@ -73,7 +77,7 @@ export default [
     },
   },
   {
-    url: '/api/mock/user/facadeuser/imageWish',
+    url: `${baseURL}/mock/user/facadeuser/imageWish`,
     method: 'post',
     response: () => {
       return {
