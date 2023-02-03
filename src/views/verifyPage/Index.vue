@@ -7,6 +7,7 @@
   import { formData, ruleList } from '@/views/verifyPage/verifyPage';
   import TitleBar from '@/component/TitleBar.vue';
   import { useCountDown } from '@/hooks/useCountDown';
+  import router from '@/router';
 
   defineComponent({
     name: 'VerifyPage',
@@ -37,6 +38,7 @@
     console.log('registerByPhone 响应结果：', response);
     if (response.successTag) {
       showSuccessToast(response.message);
+      await router.push('/');
     } else {
       showFailToast(response.message);
     }
@@ -49,7 +51,6 @@
     showPopup.value = true;
     console.log('getIdentifyCodeCode', showPopup.value);
   };
-  console.log('组件外部的 modelValue：', showPopup.value);
 </script>
 
 <template>

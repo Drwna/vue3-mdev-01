@@ -13,6 +13,8 @@
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "2",
     "axios": "^1.2.1",
+    "echarts": "^5.4.1",
+    "echarts-gl": "^2.0.9",
     "pinia": "^2.0.28",
     "pinia-plugin-persistedstate": "^3.0.2",
     "qrcode": "1",

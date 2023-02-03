@@ -1,9 +1,7 @@
 <script lang="ts" setup>
   import { defineComponent, ref } from 'vue';
 
-  defineComponent({
-    name: 'Search',
-  });
+  defineComponent({ name: 'Search' });
 
   const value = ref('');
 
@@ -19,8 +17,6 @@
 </template>
 
 <style lang="scss" scoped>
-.search {
-
-}
-
+  .search {
+  }
 </style>

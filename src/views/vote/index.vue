@@ -50,6 +50,13 @@
 </template>
 
 <style lang="scss" scoped>
+  :deep(.van-overlay),
+  :deep(.van-popup--bottom) {
+    max-width: $maxWidth;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .wrapper {
     height: 340px;
     h2 {

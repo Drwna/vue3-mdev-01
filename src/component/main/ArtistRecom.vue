@@ -10,7 +10,7 @@
   <div class="artist">
     <h2>艺术家推荐</h2>
     <div class="wrapper">
-      <ul>
+      <ul class="no-scrollbar">
         <li>
           <div class="info">
             <img class="avatar" src="@/assets/images/artmart/avatar.png" alt="avatar" />
@@ -76,15 +76,15 @@
 
     h2 {
       padding-left: 20px;
-      font-size: 32px;
+      font-size: 22px;
     }
 
     .wrapper {
-      padding-top: 30px;
+      padding-top: 24px;
 
       ul {
         width: 100%;
-        padding: 4px 0 4px 20px;
+        padding: 4px 20px 4px 20px;
         overflow-x: auto;
         display: flex;
         gap: 12px;

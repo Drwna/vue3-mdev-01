@@ -3,62 +3,28 @@
   import Verify from '@/component/Verify.vue';
   import { showFailToast, showSuccessToast } from 'vant';
   import 'vant/es/toast/style';
-  import { checkAndSendShortMsg, getCurrUserInfo, loginByShortMsg } from '@/api/user';
+  import { checkAndSendShortMsg, loginByShortMsg } from '@/api/user';
   import { validator } from '@/utils/verify';
   import { useUserStore } from '@/stores/modules/user';
-  import router from '@/router';
   import TitleBar from '@/component/TitleBar.vue';
+  import { useCountDown } from '@/hooks/useCountDown';
+  import router from '@/router';
 
-  defineComponent({
-    name: 'Login',
-  });
+  defineComponent({ name: 'Login' });
 
-  const formData = reactive({
-    mobilePhoneNo: '',
-    identifyCode: '',
-  });
+  type FormData = {
+    mobilePhoneNo: string;
+    identifyCode: string;
+  };
+  const formData = reactive<FormData>({ mobilePhoneNo: '', identifyCode: '' });
   const ruleList = reactive({
     phone: [{ validator, message: '', c: 'mobile' }],
     code: [{ validator, message: '', c: 'code' }],
   });
-
-  const storeUser = useUserStore();
-  const userInfo = reactive<Record<string, string>>({});
-  const getInfo = async () => {
-    const response = await getCurrUserInfo();
-    console.log(response);
-    Object.assign(userInfo, response);
-    const { avatarUrl, nickName, userEMail } = response.rtnObj1;
-    storeUser.setUserInfo({
-      isLogin: true,
-      avatarUrl,
-      nickName,
-      userEMail,
-    });
-    await router.push('/cosmos');
-  };
-
-  const codeBtn = reactive({
-    text: '获取验证码',
-    disabled: false,
-  });
   const showPopup = ref(false);
 
-  const countDown = () => {
-    let time = 3;
-    codeBtn.text = time + 's后重试';
-    codeBtn.disabled = true;
-    const timer = setInterval(() => {
-      time--;
-      codeBtn.text = time + 's后重试';
-      if (time <= 0) {
-        clearInterval(timer);
-        showPopup.value = false;
-        codeBtn.text = '获取验证码';
-        codeBtn.disabled = false;
-      }
-    }, 1000);
-  };
+  const storeUser = useUserStore();
+  const { buttonState, startCount } = useCountDown(3);
   const onFinished = async (word: string) => {
     console.log('完成', word);
     formData.identifyCode = word;
@@ -71,7 +37,7 @@
       showSuccessToast('验证码发送成功');
     }
     showPopup.value = false;
-    countDown();
+    startCount();
   };
   const onLogin = async () => {
     console.log('登录数据：', formData);
@@ -79,7 +45,10 @@
     console.log('loginByShortMsg 响应结果：', response);
     if (response.successTag) {
       showSuccessToast(response.message);
-      await getInfo();
+      const res = await storeUser.getUserInfo();
+      if (res) {
+        await router.replace('/');
+      }
     } else {
       showFailToast(response.message);
     }
@@ -117,8 +86,8 @@
           placeholder="验证码"
           maxlength="6"
         />
-        <van-button @click="getIdentifyCode" :disabled="codeBtn.disabled" class="btn-code" round type="primary">
-          {{ codeBtn.text }}
+        <van-button @click="getIdentifyCode" :disabled="buttonState.disabled" class="btn-code" round type="primary">
+          {{ buttonState.text }}
         </van-button>
       </div>
     </van-cell-group>
@@ -126,23 +95,17 @@
       <van-button round block type="primary" native-type="submit">登录</van-button>
     </div>
   </van-form>
+  <RouterLink class="reg" to="register">注册</RouterLink>
   <verify v-model="showPopup" :phoneOrEmail="formData.mobilePhoneNo" @finished="onFinished" />
-
-  <hr />
-  <div>{{ userInfo }}</div>
 </template>
 
 <style lang="scss" scoped>
-  h1 {
-    padding-top: 20px;
-    text-align: center;
-    font-size: 24px;
-    .icon {
-      width: 16px;
-      height: 16px;
-      position: absolute;
-      left: 10px;
-    }
+  .reg {
+    float: right;
+    font-size: 20px;
+    text-decoration: underline;
+    margin: var(--van-cell-group-inset-padding);
+    text-align: right;
   }
 
   .form-item {

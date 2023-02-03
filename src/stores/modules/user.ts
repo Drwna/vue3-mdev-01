@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { getCurrUserInfo } from '@/api/user';
 
 interface StoreUser {
   isLogin?: boolean;
@@ -21,6 +22,22 @@ export const useUserStore = defineStore('userInfo', {
       this.nickName = nickName;
       this.avatarUrl = baseAvatarUrl + avatarUrl;
       this.userEMail = userEMail;
+    },
+    async getUserInfo() {
+      const response = await getCurrUserInfo();
+      if (response?.errMsg) {
+        this.$reset();
+        return false;
+      }
+      console.log('userStore getInfo==>', response);
+      const { avatarUrl, nickName, userEMail } = response.rtnObj1;
+      this.setUserInfo({
+        isLogin: true,
+        avatarUrl,
+        nickName,
+        userEMail,
+      });
+      return true;
     },
   },
   persist: {

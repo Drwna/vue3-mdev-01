@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { computed, defineComponent, ref, watch } from 'vue';
-  import { getIdentifyCode } from '@/api/user';
+  import { getIdentifyCode, getIdentifyCodeForEMail } from '@/api/user';
   import { blurBg } from '@/utils';
   import { showFailToast } from 'vant/es';
   import Icon from '@/component/Icon.vue';
@@ -31,16 +31,11 @@
   const idiomArray = ref([] as string[]);
   const idiom = computed(() => idiomArray.value.map((w) => w.slice(0, 1)).join(''));
 
-  type ObjParam = {
-    [key in 'userEMail' | 'mobilePhoneNo']: string;
-  };
+  type Method = (params: { mobilePhoneNo?: string; userEMail?: string }) => Promise<Record<string, any>>;
   const setWord = async () => {
-    // {"mobilePhoneNo":"13816332625","userEMail":"andysh@aliyun.com"}
     const key = props.phoneOrEmail.includes('@') ? 'userEMail' : 'mobilePhoneNo';
-    const objParam = { [key]: props.phoneOrEmail } as ObjParam;
-    console.log('getIdentifyCode 请求参数： ====>', objParam);
-    const response = await getIdentifyCode(objParam);
-
+    const method = key === 'mobilePhoneNo' ? getIdentifyCode : getIdentifyCodeForEMail;
+    const response = await (method as Method)({ [key]: props.phoneOrEmail });
     console.log('getIdentifyCode 响应结果：', response);
     if (response.successTag) {
       blurBg(div.value!);
@@ -84,7 +79,7 @@
 </script>
 
 <template>
-  <div class="popup" v-if="show" @click="onClickOverlay">
+  <div class="popup" v-show="show" @click="onClickOverlay">
     <div class="box">
       <div class="close" @click="close">
         <Icon name="close" />
@@ -119,9 +114,11 @@
   .popup {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
     width: 100%;
     height: 100%;
+    max-width: $maxWidth;
+    transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     display: flex;
@@ -130,7 +127,7 @@
   }
 
   .box {
-    width: calc(100vw - 2 * var(--van-padding-md));
+    width: calc(100% - 2 * var(--van-padding-md));
     background-color: #fff;
     border-radius: 10px;
     padding-top: 20px;

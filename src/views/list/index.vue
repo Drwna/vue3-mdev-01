@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { defineComponent, reactive, ref } from 'vue';
+  import { defineComponent, inject, reactive, ref } from 'vue';
   import { showConfirmDialog } from 'vant';
   import 'vant/es/dialog/style';
   import TitleBar from '@/component/TitleBar.vue';
@@ -72,12 +72,13 @@
       // });
     }
   };
+  const hasBack = inject('hasBack', true);
 </script>
 
 <template>
   <div class="list">
-    <van-sticky :offset-top="0">
-      <TitleBar style="background-color: #fff" title="list" />
+    <div class="title">
+      <TitleBar title="list" :hasBack="hasBack" />
       <van-cell class="order-title">
         <template #title>
           <div class="order-item">
@@ -87,32 +88,40 @@
           </div>
         </template>
       </van-cell>
-    </van-sticky>
-    <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-      <van-swipe-cell :before-close="beforeClose" v-for="{ index, orderNo, amount } in orderList" :key="index">
-        <van-cell>
-          <template #title>
-            <div class="order-item">
-              <span> {{ index }} </span>
-              <span> {{ orderNo }}</span>
-              <span> {{ amount }} </span>
-            </div>
+    </div>
+    <div class="content">
+      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <van-swipe-cell :before-close="beforeClose" v-for="{ index, orderNo, amount } in orderList" :key="index">
+          <van-cell>
+            <template #title>
+              <div class="order-item">
+                <span> {{ index }} </span>
+                <span> {{ orderNo }}</span>
+                <span> {{ amount }} </span>
+              </div>
+            </template>
+          </van-cell>
+          <template #right>
+            <van-button square type="danger" text="删除" @click="onDelete(index)" />
           </template>
-        </van-cell>
-        <template #right>
-          <van-button square type="danger" text="删除" @click="onDelete(index)" />
-        </template>
-      </van-swipe-cell>
-    </van-list>
+        </van-swipe-cell>
+      </van-list>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
   .list {
-    font-size: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     .order-item {
       display: flex;
       justify-content: space-between;
+    }
+    .content {
+      flex: 1;
+      overflow: auto;
     }
   }
 </style>

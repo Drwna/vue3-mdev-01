@@ -2,28 +2,21 @@
   import { defineComponent } from 'vue';
   import Icon from '@/component/Icon.vue';
 
-  defineComponent({
-    name: 'NavBar',
-  });
+  defineComponent({ name: 'GeneralNavBar' });
+
+  type NavItem = {
+    name: string;
+    path: string;
+    icon: string;
+  };
+  defineProps<{ navData: NavItem[] }>();
 </script>
 
 <template>
   <nav class="nav">
-    <router-link to="/cosmos">
-      <Icon name="artmart-home" />
-      <span>首页</span>
-    </router-link>
-    <router-link to="/cosmos/category">
-      <Icon name="artmart-category" />
-      <span>分类</span>
-    </router-link>
-    <router-link to="/cosmos/wishlist">
-      <Icon name="artmart-like" />
-      <span>心愿单</span>
-    </router-link>
-    <router-link to="/cosmos/my">
-      <Icon name="artmart-my" />
-      <span>我的</span>
+    <router-link v-for="item in navData" :key="item.path" :to="item.path">
+      <Icon :name="item.icon" />
+      <span>{{ item.name }}</span>
     </router-link>
   </nav>
 </template>
@@ -32,7 +25,7 @@
   .nav {
     display: flex;
     > a {
-      width: 25%;
+      flex: 1;
       font-size: 16px;
       display: flex;
       flex-direction: column;

@@ -3,26 +3,36 @@
   import Icon from '@/component/Icon.vue';
   import router from '@/router';
 
-  defineComponent({
-    name: 'TitleBar',
-  });
-  defineProps<{ title: string }>();
+  defineComponent({ name: 'TitleBar' });
+  const props = withDefaults(
+    defineProps<{
+      title: string;
+      border?: boolean;
+      hasBack?: boolean;
+      onClick?: () => void;
+    }>(),
+    {
+      border: true,
+      hasBack: true,
+    },
+  );
+  const onClick = () => (props.onClick ? props.onClick() : router.back());
 </script>
 
 <template>
   <div class="title">
     <h1>
-      <Icon @click="router.back()" name="leftArrow" />
+      <Icon @click="onClick" name="leftArrow" v-if="hasBack" />
       {{ title }}
     </h1>
-    <hr />
+    <hr v-if="border" />
   </div>
 </template>
 
 <style lang="scss" scoped>
   .title {
     text-align: center;
-    padding: 20px 16px 10px 16px;
+    padding: 16px;
     h1 {
       text-align: center;
       font-size: 24px;

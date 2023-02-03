@@ -8,6 +8,7 @@
   import { uploadImg } from '@/api/user';
   import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({ name: 'ProfileList' });
 
@@ -63,10 +64,7 @@
 </script>
 
 <template>
-  <h1>
-    个人信息
-    <Icon name="leftArrow" @click="router.back()" />
-  </h1>
+  <TitleBar title="个人信息" :border="false" />
   <div class="avatar">
     <div class="avatar-img">
       <img @click.stop="previewAvatar" :src="avatarUrl" alt="avatar" />
@@ -95,7 +93,7 @@
       </div>
       <Icon name="artmart-arrow" />
     </li>
-    <li class="list-item" @click="router.push('resetPassword')">
+    <li class="list-item" @click="router.push('registerAndLoginWithMobile/resetPassword')">
       <div class="content">
         <div class="title">重置密码</div>
         <div class="value"></div>
@@ -110,6 +108,11 @@
       <Icon name="artmart-arrow" />
     </li>
   </ul>
+  <van-cell title="昵称" is-link :value="storeUser.nickName" to="profileList/editNickName" />
+  <van-cell title="邮箱" is-link :value="storeUser.userEMail" to="profileList/editEMail" />
+  <van-cell title="实名认证" is-link :value="storeUser.userEMail ? '已认证' : '未认证'" to="profileList/auth" />
+  <van-cell title="重置密码" is-link :value="storeUser.userEMail" to="registerAndLoginWithMobile/resetPassword" />
+  <van-cell title="注销账号" is-link />
   <div v-if="isShowModal" class="modal">
     <div class="modal-content">
       <VuePictureCropper
@@ -138,18 +141,6 @@
 </template>
 
 <style lang="scss" scoped>
-  h1 {
-    padding-top: 20px;
-    text-align: center;
-    font-size: 24px;
-    .icon {
-      width: 16px;
-      height: 16px;
-      position: absolute;
-      left: 10px;
-    }
-  }
-
   .avatar {
     display: flex;
     justify-content: center;

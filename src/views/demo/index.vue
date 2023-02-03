@@ -1,9 +1,7 @@
 <script lang="ts" setup>
   import { defineComponent } from 'vue';
 
-  defineComponent({
-    name: 'LayoutDemo',
-  });
+  defineComponent({ name: 'LayoutDemo' });
 </script>
 
 <template>
@@ -19,13 +17,16 @@
             <div class="AboutUs_about__title__3CXn5">artmart.</div>
             <div class="AboutUs_description__pEykJ AboutUs_about__company__3XIhH">上海绘脉文化科技有限公司旗下</div>
             <div class="AboutUs_description__pEykJ AboutUs_about__description-1__2KKi2"
-              >融汇艺术资讯及生活方式的<em class="AboutUs_description__em__2z0wF AboutUs_description__em--margin-left__lAR5n">国际艺术品交易平台</em>
+              >融汇艺术资讯及生活方式的<em class="AboutUs_description__em__2z0wF AboutUs_description__em--margin-left__lAR5n"
+                >国际艺术品交易平台</em
+              >
             </div>
-            <div class="AboutUs_description__pEykJ AboutUs_about__description-2__32-g9">以多重方式呈现<em class="AboutUs_description__em__2z0wF">「新潮酷」的艺术新体验</em></div>
+            <div class="AboutUs_description__pEykJ AboutUs_about__description-2__32-g9"
+              >以多重方式呈现<em class="AboutUs_description__em__2z0wF">「新潮酷」的艺术新体验</em></div
+            >
             <button class="AboutUs_about__button__35Nrl">立即体验</button>
           </div>
-          <div class="AboutUs_about__right__203m1">
-          </div>
+          <div class="AboutUs_about__right__203m1"> </div>
         </div>
       </div>
     </div>

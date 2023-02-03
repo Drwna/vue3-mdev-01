@@ -24,6 +24,7 @@
 
 <style lang="scss" scoped>
   .powers {
+    padding: 20px 16px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -37,11 +38,11 @@
       gap: 32px;
 
       img {
-        width: 28px;
+        width: 24px;
       }
 
       .text {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }

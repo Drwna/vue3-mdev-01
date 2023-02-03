@@ -1,15 +1,18 @@
 <script lang="ts" setup>
-  import { defineComponent } from 'vue';
-  import MainLayout from '@/component/artmart/MainLayout.vue';
+  import { defineComponent, provide } from 'vue';
+  import MainLayout from '@/component/main/MainLayout.vue';
+  import List from '@/views/list/index.vue';
 
   defineComponent({
     name: 'Category',
   });
+
+  provide('hasBack', false);
 </script>
 
 <template>
   <MainLayout>
-    <div>分类</div>
+    <List />
   </MainLayout>
 </template>
 

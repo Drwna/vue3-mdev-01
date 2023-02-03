@@ -14,8 +14,10 @@ enum URL {
   SendRegisterEmail = '/remote/auth/facadeauth/sendRegisterEmail',
   CheckVerifyCodeByEmail = '/remote/auth/facadeauth/checkVerifyCodeByEmail',
   CheckAndSendShortMsg = '/remote/auth/facadeauth/checkAndSendShortMsg',
+  getIdentifyCodeForEMail = '/remote/auth/facadeauth/getIdentifyCodeForEMail',
   LoginByShortMsg = '/remote/auth/facadeauth/loginByShortMsg',
   LoginByPwd = '/remote/auth/facadeauth/login',
+  LoginByEMail = '/remote/auth/facadeauth/login',
   GetCurrUserInfo = '/remote/auth/facadeauth/getCurrUserInfo',
   ResetPwd = '/remote/auth/facadeauth/resetUserPwdByPhone',
   UploadImg = '/remote/infra/facadeinfra/uploadImg',
@@ -33,7 +35,7 @@ export function register(objParam: typeof formData) {
   // return http.post('/mock/user/facadeuser/registerUser', objParam);
 }
 
-export const getIdentifyCode = (objParam: { mobilePhoneNo: string } | { userEMail: string }) => {
+export const getIdentifyCode = (objParam: { mobilePhoneNo: string }) => {
   return http.post(URL.GetIdentifyCode, objParam);
 };
 
@@ -49,8 +51,12 @@ export const registerByPhone = (objParam: typeof RegisterByPhone) => {
   return http.post(URL.RegisterByPhone, objParam);
 };
 
-export const sendRegisterEmail = (objParam: { userEMail: string; userPwd: string; confirmPwd: string }) => {
+export const sendRegisterEmail = (objParam: { userEMail: string; userPwd: string; identifyCode: string }) => {
   return http.post(URL.SendRegisterEmail, objParam);
+};
+
+export const getIdentifyCodeForEMail = (objParam: { userEMail: string }) => {
+  return http.post(URL.getIdentifyCodeForEMail, objParam);
 };
 
 export const activeRegisterByEmail = (objParam: { userEMail: string; identifyCode: string }) => {
@@ -74,6 +80,10 @@ export const loginByShortMsg = (objParam: Pick<typeof RegisterByPhone, 'mobilePh
 };
 
 export const loginByPwd = (objParam: { userNo: string; userPwd: string }) => {
+  return http.post(URL.LoginByPwd, objParam);
+};
+
+export const loginByEMail = (objParam: { userNo: string; userPwd: string }) => {
   return http.post(URL.LoginByPwd, objParam);
 };
 

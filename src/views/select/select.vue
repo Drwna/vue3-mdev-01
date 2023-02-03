@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { computed, defineComponent, onBeforeUpdate, reactive, ref, watch } from 'vue';
+  import { computed, defineComponent, reactive, ref } from 'vue';
   import TitleBar from '@/component/TitleBar.vue';
   import type { CheckboxGroupInstance, CheckboxInstance } from 'vant';
   import { getImageWishList } from '@/api/user';
@@ -23,16 +23,18 @@
   const imageList = reactive<ImageWishList[]>([]);
   const btnDisabled = computed(() => checked.value.length === 0);
   const totalPrice = computed(() =>
-    imageList.reduce((total, item) => {
-      if (checked.value.includes(item.id)) {
-        return total + Number(item.price);
-      }
-      return total;
-    }, 0),
+    imageList
+      .reduce((total, item) => {
+        if (checked.value.includes(item.id)) {
+          return total + Number(item.price);
+        }
+        return total;
+      }, 0)
+      .toFixed(2),
   );
-  onBeforeUpdate(() => {
-    checkboxRefs.value = [];
-  });
+  // onBeforeUpdate(() => {
+  //   checkboxRefs.value = [];
+  // });
   const toggle = (index: number) => {
     (checkboxRefs.value[index] as CheckboxInstance).toggle();
     allChecked.value = imageList.length === checked.value.length;

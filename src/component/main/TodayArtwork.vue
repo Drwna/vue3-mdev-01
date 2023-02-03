@@ -1,9 +1,7 @@
 <script lang="ts" setup>
   import { defineComponent } from 'vue';
 
-  defineComponent({
-    name: 'TodayArtwork',
-  });
+  defineComponent({ name: 'TodayArtwork' });
 </script>
 
 <template>
@@ -49,10 +47,11 @@
   .today-artwork {
     display: flex;
     flex-direction: column;
+    padding: 30px 20px;
     gap: 20px;
 
     > h2 {
-      font-size: 32px;
+      font-size: 22px;
     }
 
     > .image {

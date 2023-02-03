@@ -1,15 +1,17 @@
 <script lang="ts" setup>
-  import { defineComponent } from 'vue';
-  import MainLayout from '@/component/artmart/MainLayout.vue';
+  import { defineComponent, provide } from 'vue';
+  import MainLayout from '@/component/main/MainLayout.vue';
+  import Profile from '@/views/profile/Index.vue';
 
   defineComponent({
     name: 'My',
   });
+  provide('hasBack', false);
 </script>
 
 <template>
   <MainLayout>
-    <div>我的</div>
+    <Profile />
   </MainLayout>
 </template>
 

@@ -38,7 +38,7 @@ $maxDeviceWidth: 750px;
   @return $px;
 }
 
-@function pxToRem($px){//$px为需要转换的字号
+@function pxToRem($px) { //$px为需要转换的字号
   @return $px / $designWidth / $blocks * 1rem;
 }
 
@@ -61,4 +61,7 @@ $maxDeviceWidth: 750px;
   min-width: $minDeviceWidth;
 }
 
-
+//scrollbar-width: none
+.no-scrollbar {
+  scrollbar-width: none;
+}

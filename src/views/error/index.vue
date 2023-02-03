@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-  import router from '@/router';
+  import { useRouter } from 'vue-router';
 
+  const router = useRouter();
   const goHome = () => router.push('/');
 </script>
 

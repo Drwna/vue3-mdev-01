@@ -24,7 +24,7 @@ export const useCountDown: ICountDown = (time = 30) => {
       time--;
       buttonState.text = `${time}秒后重新获取`;
       buttonState.disabled = true;
-      timer = setTimeout(() => {
+      timer = window.setTimeout(() => {
         startCount();
       }, 1000);
     } else {

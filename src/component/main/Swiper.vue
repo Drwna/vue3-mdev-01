@@ -1,9 +1,7 @@
 <script lang="ts" setup>
   import { defineComponent } from 'vue';
 
-  defineComponent({
-    name: 'Swiper',
-  });
+  defineComponent({ name: 'Swiper' });
 
   defineProps<{
     imageList: {
@@ -11,15 +9,13 @@
       name: string;
     }[];
   }>();
-
-  const baseImgURL = 'src/assets/images/artmart/';
 </script>
 
 <template>
   <div class="swiper">
     <van-swipe autoplay="3000">
       <van-swipe-item v-for="image in imageList" :key="image.name">
-        <img class="img" :src="baseImgURL + image.img" :alt="image.name" />
+        <img class="img" :src="image.img" :alt="image.name" />
       </van-swipe-item>
     </van-swipe>
   </div>

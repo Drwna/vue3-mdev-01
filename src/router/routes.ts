@@ -6,43 +6,54 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
+    beforeEnter: async (to, from, next) => {
+      const storeUser = useUserStore();
+      if (storeUser.isLogin || from.path === '/registerAndLoginWithMobile/register') {
+        next();
+      } else {
+        next({ path: '/registerAndLoginWithMobile/login', replace: true });
+      }
+    },
     component: HomeView,
   },
   {
-    path: '/cosmos',
+    path: '/mainPage',
+    component: () => import('@/views/mainPage/index.vue'),
     children: [
-      { path: '', component: () => import('@/views/artmart/index.vue') },
-      { path: 'category', component: () => import('@/views/category/index.vue') },
-      { path: 'wishlist', component: () => import('@/views/wishList/index.vue') },
-      { path: 'my', component: () => import('@/views/my/index.vue') },
+      { path: '', component: () => import('@/views/mainPage/homePage.vue') },
+      { path: 'category', component: () => import('@/views/mainPage/Category.vue') },
+      { path: 'chart', component: () => import('@/views/mainPage/Chart.vue') },
+      { path: 'my', component: () => import('@/views/mainPage/My.vue') },
     ],
   },
   {
-    path: '/demo',
-    name: 'demo',
-    component: () => import('@/views/demo/index.vue'),
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: () => import('@/views/verifyPage/Index.vue'),
-  },
-  {
-    path: '/eRegister',
-    name: 'eRegister',
-    component: () => import('@/views/eRegister/index.vue'),
-  },
-  {
-    path: '/login',
+    path: '/artPage',
+    component: () => import('@/views/artPage/index.vue'),
     children: [
-      { path: '', component: () => import('@/views/login/Index.vue') },
-      { path: 'password', component: () => import('@/views/login/PasswordLogin.vue') },
+      { path: '', component: () => import('@/views/artPage/homePage.vue') },
+      { path: 'category', component: () => import('@/views/artPage/Category.vue') },
+      { path: 'chart', component: () => import('@/views/artPage/Chart.vue') },
+      { path: 'my', component: () => import('@/views/artPage/My.vue') },
     ],
   },
   {
-    path: '/resetPassword',
-    name: 'resetPassword',
-    component: () => import('@/views/resetPassword/Index.vue'),
+    path: '/registerAndLoginWithMobile',
+    component: () => import('@/views/mobilePage/index.vue'),
+    children: [
+      { path: '', component: () => import('@/views/mobilePage/list.vue') },
+      { path: 'register', component: () => import('@/views/verifyPage/Index.vue') },
+      { path: 'login', component: () => import('@/views/login/Index.vue') },
+      { path: 'loginByPassword', component: () => import('@/views/login/PasswordLogin.vue') },
+      { path: 'resetPassword', component: () => import('@/views/resetPassword/Index.vue') },
+    ],
+  },
+  {
+    path: '/registerAndLoginWithEMail',
+    children: [
+      { path: '', component: () => import('@/views/eMailPage/index.vue') },
+      { path: 'register', component: () => import('@/views/eRegister/index.vue') },
+      { path: 'login', component: () => import('@/views/login/EMailLogin.vue') },
+    ],
   },
   {
     path: '/profile',
@@ -52,7 +63,7 @@ const routes: RouteRecordRaw[] = [
       if (storeUser.isLogin) {
         next();
       } else {
-        next('/login');
+        next({ path: 'registerAndLoginWithMobile/login', replace: true });
       }
     },
     component: () => import('@/views/profile/Index.vue'),
@@ -96,6 +107,11 @@ const routes: RouteRecordRaw[] = [
     path: '/select',
     name: 'select',
     component: () => import('@/views/select/select.vue'),
+  },
+  {
+    path: '/echarts',
+    name: 'echarts',
+    component: () => import('@/views/echarts/Index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

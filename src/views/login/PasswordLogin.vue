@@ -25,7 +25,7 @@
   const userInfo = reactive<Record<string, string>>({});
   const getInfo = async () => {
     const response = await getCurrUserInfo();
-    console.log('getInfo', response);
+    console.log('getInfo==>', response);
     Object.assign(userInfo, response);
     const { avatarUrl, nickName, userEMail } = response.rtnObj1;
     storeUser.setUserInfo({
@@ -43,6 +43,7 @@
     console.log('loginByShortMsg 响应结果：', response);
     if (response.successTag) {
       showSuccessToast(response.message);
+      await getInfo();
     } else {
       showFailToast(response.message);
     }
@@ -68,10 +69,6 @@
       <van-button round block type="primary" native-type="submit">登录</van-button>
     </div>
   </van-form>
-
-  <hr />
-  <van-button type="primary" @click="getInfo">获取当前用户信息</van-button>
-  <div>{{ userInfo }}</div>
 </template>
 
 <style lang="scss" scoped>

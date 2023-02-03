@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-  import { defineComponent } from 'vue';
+  import { defineComponent, inject } from 'vue';
   import { useUserStore } from '@/stores/modules/user';
   import { useRouter } from 'vue-router';
-  import Icon from '@/component/Icon.vue';
   import { showSuccessToast } from 'vant';
+  import TitleBar from '@/component/TitleBar.vue';
 
   defineComponent({
-    name: 'Index',
+    name: 'Profile',
   });
 
   const storeUser = useUserStore();
@@ -15,24 +15,16 @@
 
   const logout = () => {
     showSuccessToast('已退出登录!');
-    // TODO
-    storeUser.setUserInfo({
-      isLogin: false,
-      avatarUrl: '',
-      nickName: '',
-      userEMail: '',
-    });
+    storeUser.$reset();
     router.replace('/');
   };
+  const hasBack = inject('hasBack', true);
 </script>
 
 <template>
   <div class="wrapper">
-    <h1>
-      <Icon name="leftArrow" @click="router.back" />
-      个人中心
-    </h1>
-    <van-cell center value="" is-link to="profileList">
+    <TitleBar title="个人中心" :border="false" :hasBack="hasBack" />
+    <van-cell center value="" is-link to="/profileList">
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
         <span class="custom-title">

@@ -1,15 +1,17 @@
 <script lang="ts" setup>
-  import { defineComponent } from 'vue';
-  import MainLayout from '@/component/artmart/MainLayout.vue';
+  import { defineComponent, provide } from 'vue';
+  import MainLayout from '@/component/main/MainLayout.vue';
+  import EchartsPage from '@/views/echarts/Index.vue';
 
   defineComponent({
     name: 'WishList',
   });
+  provide('hasBack', false);
 </script>
 
 <template>
   <MainLayout>
-    <div>心愿单</div>
+    <EchartsPage />
   </MainLayout>
 </template>
 
