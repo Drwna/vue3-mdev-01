@@ -24,12 +24,11 @@
   const showPopup = ref(false);
 
   const storeUser = useUserStore();
-  const { buttonState, startCount } = useCountDown(3);
+  const { buttonState, startCount } = useCountDown();
   const onFinished = async (word: string) => {
-    console.log('完成', word);
     formData.identifyCode = word;
     const response = await checkAndSendShortMsg(formData);
-    console.log('checkAndSendShortMsg 响应结果：', response);
+    console.log('checkAndSendShortMsg 响应结果：', response, response.rtnobj1);
     if (!response.successTag) {
       showFailToast(response.message);
       return;
@@ -61,10 +60,11 @@
     showPopup.value = true;
     console.log('getIdentifyCodeCode', showPopup.value);
   };
+  const onClick = () => router.push('/');
 </script>
 
 <template>
-  <TitleBar title="验证码登录" />
+  <TitleBar title="验证码登录" :onClick="onClick" />
   <van-form @submit="onLogin">
     <van-cell-group inset>
       <van-field

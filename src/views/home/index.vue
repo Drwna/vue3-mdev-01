@@ -1,14 +1,12 @@
 <script lang="ts" setup>
   import { defineComponent } from 'vue';
 
-  defineComponent({
-    name: 'HomePage',
-  });
+  defineComponent({ name: 'HomePage' });
 </script>
 
 <template>
   <van-sticky>
-    <h1 class="title"> 硕亦科技 移动端 </h1>
+    <h1 class="title"> H5 移动端 </h1>
   </van-sticky>
   <van-cell title="主界面（通用）" is-link to="/mainPage" />
   <van-cell title="主界面（art）" is-link to="/artPage" />
@@ -23,6 +21,8 @@
   <van-cell title="邮箱注册及登录" is-link to="/registerAndLoginWithEMail" />
   <van-cell title="个人信息" is-link to="/profile" />
   <van-cell title="联系客服" is-link url="https://www.livechat.ship-film.net/chatIndex?kefu_id=s011&ent_id=2&lang=zh" />
+  <van-cell title="www.shi-film.com" is-link url="https://www.ship-film.com" />
+  <van-cell title="www.shi-film.net" is-link url="https://www.ship-film.com" />
 </template>
 
 <style lang="scss" scoped>

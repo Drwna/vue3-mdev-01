@@ -31,6 +31,7 @@
     > .header {
       //padding: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      z-index: $headerZIndex;
       h1 {
         position: relative;
         text-align: center;

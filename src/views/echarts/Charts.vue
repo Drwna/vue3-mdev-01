@@ -2,7 +2,7 @@
   import { defineComponent, onMounted, ref } from 'vue';
   import type { ECBasicOption } from 'echarts/types/dist/shared';
   import * as echarts from 'echarts/core';
-  import 'echarts-gl';
+  // import 'echarts-gl';
   import { LineChart, BarChart, PieChart, ScatterChart, GaugeChart, RadarChart } from 'echarts/charts';
   import { CanvasRenderer } from 'echarts/renderers';
 

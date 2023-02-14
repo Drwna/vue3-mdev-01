@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-  import { defineComponent } from 'vue';
-  import MainLayout from '@/views/mainPage/MainLayout.vue';
+  import { defineComponent, provide } from 'vue';
+  import ProfileList from '@/views/profileList/ProfileList.vue';
 
   defineComponent({ name: 'My' });
+  provide('hasBack', false);
+  provide('hasTitle', false);
 </script>
 
 <template>
-  <MainLayout> 我的 </MainLayout>
+  <ProfileList />
 </template>
 
 <style lang="scss" scoped></style>

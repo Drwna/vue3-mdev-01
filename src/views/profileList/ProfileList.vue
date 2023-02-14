@@ -1,21 +1,20 @@
 <script lang="ts" setup>
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, inject, ref } from 'vue';
   import Icon from '@/component/Icon.vue';
   import { showImagePreview } from 'vant';
   import 'vant/es/image-preview/style';
   import VuePictureCropper, { cropper } from 'vue-picture-cropper';
   import { useUserStore } from '@/stores/modules/user';
   import { uploadImg } from '@/api/user';
-  import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
   import TitleBar from '@/component/TitleBar.vue';
+  import defaultAvatar from '@/assets/images/defaultAvatar.webp';
 
   defineComponent({ name: 'ProfileList' });
 
   const router = useRouter();
   const storeUser = useUserStore();
-  const { avatarUrl } = storeToRefs(storeUser);
-  // const avatar = userStore.avatar;
+  const avatar = storeUser.avatarUrl ? storeUser.avatarUrl : defaultAvatar;
   const isShowModal = ref(false);
   const inputPic = ref(''); // 上传的图片
   const resultBlob = ref<Blob | null>(null); // 裁剪后的blob图片
@@ -61,57 +60,22 @@
     await upload();
   };
   const goAuth = () => router.push('/profileList/auth');
+  const hasBack = inject('hasBack', true);
+  const hasTitle = inject('hasTitle', true);
 </script>
 
 <template>
-  <TitleBar title="个人信息" :border="false" />
+  <TitleBar v-if="hasTitle" title="个人信息" :border="false" :hasBack="hasBack" />
   <div class="avatar">
     <div class="avatar-img">
-      <img @click.stop="previewAvatar" :src="avatarUrl" alt="avatar" />
+      <img @click.stop="previewAvatar" :src="avatar" alt="avatar" />
       <div @click="editAvatar" class="avatar-edit">编辑</div>
     </div>
   </div>
-  <ul class="list">
-    <li class="list-item" @click="router.push('profileList/editNickName')">
-      <div class="content">
-        <div class="title">昵称</div>
-        <div class="value">{{ storeUser.nickName }}</div>
-      </div>
-      <Icon name="artmart-arrow" />
-    </li>
-    <li class="list-item" @click="router.push('profileList/editEMail')">
-      <div class="content">
-        <div class="title">邮箱</div>
-        <div class="value">{{ storeUser.userEMail }}</div>
-      </div>
-      <Icon name="artmart-arrow" />
-    </li>
-    <li class="list-item" @click="goAuth">
-      <div class="content">
-        <div class="title">实名认证</div>
-        <div class="value">未认证</div>
-      </div>
-      <Icon name="artmart-arrow" />
-    </li>
-    <li class="list-item" @click="router.push('registerAndLoginWithMobile/resetPassword')">
-      <div class="content">
-        <div class="title">重置密码</div>
-        <div class="value"></div>
-      </div>
-      <Icon name="artmart-arrow" />
-    </li>
-    <li class="list-item">
-      <div class="content">
-        <div class="title">注销账号</div>
-        <div class="value"></div>
-      </div>
-      <Icon name="artmart-arrow" />
-    </li>
-  </ul>
-  <van-cell title="昵称" is-link :value="storeUser.nickName" to="profileList/editNickName" />
-  <van-cell title="邮箱" is-link :value="storeUser.userEMail" to="profileList/editEMail" />
-  <van-cell title="实名认证" is-link :value="storeUser.userEMail ? '已认证' : '未认证'" to="profileList/auth" />
-  <van-cell title="重置密码" is-link :value="storeUser.userEMail" to="registerAndLoginWithMobile/resetPassword" />
+  <van-cell title="昵称" is-link :value="storeUser.nickName" to="/profileList/editNickName" />
+  <van-cell title="邮箱" is-link :value="storeUser.userEMail" to="/profileList/editEMail" />
+  <van-cell title="实名认证" is-link :value="storeUser.userEMail ? '已认证' : '未认证'" to="/profileList/auth" />
+  <van-cell title="重置密码" is-link :value="storeUser.userEMail" to="/registerAndLoginWithMobile/resetPassword" />
   <van-cell title="注销账号" is-link />
   <div v-if="isShowModal" class="modal">
     <div class="modal-content">

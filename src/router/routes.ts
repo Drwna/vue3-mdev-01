@@ -8,10 +8,15 @@ const routes: RouteRecordRaw[] = [
     name: 'home',
     beforeEnter: async (to, from, next) => {
       const storeUser = useUserStore();
-      if (storeUser.isLogin || from.path === '/registerAndLoginWithMobile/register') {
-        next();
+      const isLogin = await storeUser.getUserInfo();
+      if (from.fullPath === '/') {
+        if (isLogin || from.path === '/registerAndLoginWithMobile/register') {
+          next();
+        } else {
+          next({ path: '/registerAndLoginWithMobile/login', replace: true });
+        }
       } else {
-        next({ path: '/registerAndLoginWithMobile/login', replace: true });
+        next();
       }
     },
     component: HomeView,
@@ -38,7 +43,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/registerAndLoginWithMobile',
-    component: () => import('@/views/mobilePage/index.vue'),
     children: [
       { path: '', component: () => import('@/views/mobilePage/list.vue') },
       { path: 'register', component: () => import('@/views/verifyPage/Index.vue') },
@@ -58,9 +62,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/profile',
     name: 'profile',
-    beforeEnter: (to, from, next) => {
+    beforeEnter: async (to, from, next) => {
       const storeUser = useUserStore();
-      if (storeUser.isLogin) {
+      const isLogin = await storeUser.getUserInfo();
+      if (isLogin) {
         next();
       } else {
         next({ path: 'registerAndLoginWithMobile/login', replace: true });

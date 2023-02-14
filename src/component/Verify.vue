@@ -36,7 +36,7 @@
     const key = props.phoneOrEmail.includes('@') ? 'userEMail' : 'mobilePhoneNo';
     const method = key === 'mobilePhoneNo' ? getIdentifyCode : getIdentifyCodeForEMail;
     const response = await (method as Method)({ [key]: props.phoneOrEmail });
-    console.log('getIdentifyCode 响应结果：', response);
+    console.log('getIdentifyCode 响应结果：', response, response.rtnObj1);
     if (response.successTag) {
       blurBg(div.value!);
       idiomString.value = response.rtnObj1;

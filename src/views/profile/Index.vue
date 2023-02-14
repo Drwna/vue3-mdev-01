@@ -5,9 +5,7 @@
   import { showSuccessToast } from 'vant';
   import TitleBar from '@/component/TitleBar.vue';
 
-  defineComponent({
-    name: 'Profile',
-  });
+  defineComponent({ name: 'Profile' });
 
   const storeUser = useUserStore();
   const router = useRouter();

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import { defineComponent, provide } from 'vue';
-  import MainLayout from '@/views/mainPage/MainLayout.vue';
   import EchartsPage from '@/views/echarts/Index.vue';
 
   defineComponent({ name: 'Chart' });
@@ -8,9 +7,7 @@
 </script>
 
 <template>
-  <MainLayout>
-    <EchartsPage />
-  </MainLayout>
+  <EchartsPage :has3D="false" />
 </template>
 
 <style lang="scss" scoped></style>

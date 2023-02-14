@@ -8,42 +8,21 @@
   import router from '@/router';
   import TitleBar from '@/component/TitleBar.vue';
 
-  defineComponent({
-    name: 'PasswordLogin',
-  });
+  defineComponent({ name: 'PasswordLogin' });
 
-  const formData = reactive({
-    userNo: '',
-    userPwd: '',
-  });
+  const formData = reactive({ userNo: '', userPwd: '' });
   const ruleList = reactive({
     userNo: [{ validator, message: '', c: 'mobile' }],
     userPwd: [{ validator, message: '', c: 'password' }],
   });
-
   const storeUser = useUserStore();
-  const userInfo = reactive<Record<string, string>>({});
-  const getInfo = async () => {
-    const response = await getCurrUserInfo();
-    console.log('getInfo==>', response);
-    Object.assign(userInfo, response);
-    const { avatarUrl, nickName, userEMail } = response.rtnObj1;
-    storeUser.setUserInfo({
-      isLogin: true,
-      avatarUrl,
-      nickName,
-      userEMail,
-    });
-    await router.push('/cosmos');
-  };
-
   const onLogin = async () => {
     console.log('登录数据：', formData);
     const response = await loginByPwd(formData);
     console.log('loginByShortMsg 响应结果：', response);
     if (response.successTag) {
       showSuccessToast(response.message);
-      await getInfo();
+      await storeUser.getUserInfo();
     } else {
       showFailToast(response.message);
     }

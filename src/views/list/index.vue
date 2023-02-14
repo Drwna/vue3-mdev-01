@@ -73,12 +73,13 @@
     }
   };
   const hasBack = inject('hasBack', true);
+  const hasTitle = inject('hasTitle', true);
 </script>
 
 <template>
   <div class="list">
     <div class="title">
-      <TitleBar title="list" :hasBack="hasBack" />
+      <TitleBar v-if="hasTitle" title="list" :hasBack="hasBack" />
       <van-cell class="order-title">
         <template #title>
           <div class="order-item">

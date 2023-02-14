@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import { defineComponent, provide } from 'vue';
-  import MainLayout from '@/views/mainPage/MainLayout.vue';
   import List from '@/views/list/index.vue';
 
   defineComponent({ name: 'Category' });
@@ -8,9 +7,7 @@
 </script>
 
 <template>
-  <MainLayout>
-    <List />
-  </MainLayout>
+  <List />
 </template>
 
 <style lang="scss" scoped></style>

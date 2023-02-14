@@ -16,13 +16,13 @@
   const confirmPwd = ref('');
   const showPopup = ref(false);
 
-  const { buttonState, startCount } = useCountDown(3);
+  const { buttonState, startCount } = useCountDown();
 
   const onFinished = async (word: string) => {
     console.log('完成', word);
     formData.identifyCode = word;
     const response = await checkAndSendShortMsg(formData);
-    console.log('checkAndSendShortMsg 响应结果：', response);
+    console.log('checkAndSendShortMsg 响应结果：', response, response.rtnObj1);
     if (!response.successTag) {
       showFailToast(response.message);
       return;

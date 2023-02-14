@@ -6,18 +6,17 @@ type ButtonState = {
 };
 
 type ICountDown = {
-  (time: number): {
+  (time?: number): {
     buttonState: ButtonState;
     startCount: () => void;
   };
 };
 
-const buttonState = reactive<ButtonState>({
-  text: '获取验证码',
-  disabled: false,
-});
-
-export const useCountDown: ICountDown = (time = 30) => {
+export const useCountDown: ICountDown = (time = 90) => {
+  const buttonState = reactive<ButtonState>({
+    text: '获取验证码',
+    disabled: false,
+  });
   let timer: number;
   const startCount = () => {
     if (time > 0) {

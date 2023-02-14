@@ -36,35 +36,38 @@
   };
 
   const hasBack = inject('hasBack', true);
+  const hasTitle = inject('hasTitle', true);
 </script>
 
 <template>
-  <TitleBar title="tab list" :hasBack="hasBack" />
-  <div class="tabs">
-    <van-tabs v-model:active="active" swipeable>
-      <van-tab title="选项 1" name="1">
-        <div class="order-list">
-          <div class="list">
-            <van-cell class="order" center v-for="{ index, orderNo, amount } in orderList.list" :key="index">
-              <template #title>
-                <div class="order-item">
-                  <div class="content">
-                    <span> {{ index }} </span>
-                    <span class="no"> {{ orderNo }}</span>
-                    <span> {{ amount }} </span>
+  <div>
+    <TitleBar v-if="hasTitle" title="tab list" :hasBack="hasBack" />
+    <div class="tabs">
+      <van-tabs v-model:active="active" swipeable>
+        <van-tab title="选项 1" name="1">
+          <div class="order-list">
+            <div class="list">
+              <van-cell class="order" center v-for="{ index, orderNo, amount } in orderList.list" :key="index">
+                <template #title>
+                  <div class="order-item">
+                    <div class="content">
+                      <span> {{ index }} </span>
+                      <span class="no"> {{ orderNo }}</span>
+                      <span> {{ amount }} </span>
+                    </div>
                   </div>
-                </div>
-              </template>
-              <template #right-icon>
-                <Icon name="delete" @click="onDelete(index)" />
-              </template>
-            </van-cell>
+                </template>
+                <template #right-icon>
+                  <Icon name="delete" @click="onDelete(index)" />
+                </template>
+              </van-cell>
+            </div>
+            <van-pagination v-model="currentPage" :page-count="orderList.total" @change="onChange" mode="simple" />
           </div>
-          <van-pagination v-model="currentPage" :page-count="orderList.total" @change="onChange" mode="simple" />
-        </div>
-      </van-tab>
-      <van-tab title="选项 2" name="1">内容 2</van-tab>
-    </van-tabs>
+        </van-tab>
+        <van-tab title="选项 2" name="1">内容 2</van-tab>
+      </van-tabs>
+    </div>
   </div>
 </template>
 
