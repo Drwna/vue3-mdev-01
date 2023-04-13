@@ -14,6 +14,7 @@
   <van-cell title="tab 切换" is-link to="/tab" />
   <van-cell title="图表" is-link to="/echarts" />
   <van-cell title="二维码" is-link to="/qrcode" />
+  <van-cell title="人脸识别" is-link to="/faceR" />
   <van-cell title="投票" is-link to="/vote" />
   <van-cell title="图片展示" is-link to="/images" />
   <van-cell title="多选" is-link to="/select" />
