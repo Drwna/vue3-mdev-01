@@ -22,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
+    path: '/faceR',
+    name: 'faceR',
+    component: () => import('@/views/faceR/index.vue'),
+  },
+  {
     path: '/mainPage',
     component: () => import('@/views/mainPage/index.vue'),
     children: [

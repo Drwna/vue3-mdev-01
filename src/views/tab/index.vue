@@ -66,6 +66,11 @@
           </div>
         </van-tab>
         <van-tab title="选项 2" name="1">内容 2</van-tab>
+        <van-tab title="选项 3" name="1">内容 3</van-tab>
+        <van-tab title="选项 4" name="1">内容 4</van-tab>
+        <van-tab title="选项 5" name="1">内容 5</van-tab>
+        <van-tab title="选项 6" name="1">内容 6</van-tab>
+        <van-tab title="选项 7" name="1">内容 7</van-tab>
       </van-tabs>
     </div>
   </div>
